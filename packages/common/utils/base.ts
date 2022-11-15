@@ -9,3 +9,7 @@ export const isDev =
 export function isFunction(value: unknown): value is Function {
 	return typeof value === 'function'
 }
+
+export function isBoolean(value: unknown): value is Boolean {
+	return typeof value === 'boolean'
+}
