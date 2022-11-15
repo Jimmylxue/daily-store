@@ -5,7 +5,7 @@ export default function useMounted(fn: () => void) {
 	if (isDev) {
 		if (!isFunction(fn)) {
 			console.error(
-				`useMount: parameter \`fn\` expected to be a function, but got "${typeof fn}".`
+				`useMounted: parameter \`fn\` expected to be a function, but got "${typeof fn}".`
 			)
 		}
 	}

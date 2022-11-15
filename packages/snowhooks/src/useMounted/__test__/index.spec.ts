@@ -21,6 +21,7 @@ describe('>>> test useMounted', () => {
 		expect(fn).toBeCalledTimes(2)
 
 		const hook2 = renderHook(() => useMounted(fn))
+		hook2.rerender()
 		expect(fn).toBeCalledTimes(3)
 	})
 })

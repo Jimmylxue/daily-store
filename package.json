@@ -6,6 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"test": "jest",
+		"test:watch": "jest --watch",
 		"docs:start": "pnpm -C ./packages/docs start",
 		"docs:build": "pnpm -C ./packages/docs docs:build"
 	},
