@@ -1,21 +1,11 @@
 {
   "compilerOptions": {
-    "jsx": "react",
-    "target": "ESNext",
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
     "strict": true,
-    "resolveJsonModule": true,
+    "sourceMap": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "sourceMap": false,
-    "declaration": true,
-    "outDir": "./dist",
+    "types":["node","jest"]
   }
 }

@@ -1,18 +1,15 @@
 {
-	"name": "@daily-store/hooks",
+	"name": "@daily-store/common",
 	"version": "1.0.0",
-	"description": "@daily-store/hooks",
+	"description": "@daily-store/utils",
 	"main": "index.ts",
 	"type": "module",
 	"scripts": {
-		"test": "jest",
+		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"dependencies": {
-		"@daily-store/common": "workspace:^1.0.0"
-	},
 	"devDependencies": {}
 }
