@@ -1,5 +1,5 @@
-import { isBoolean, isDev } from '@daily-store/common/utils'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import useToggle from '../useToggle'
 
 type TAction = {
 	toggle: () => void
@@ -12,41 +12,19 @@ export default function useBoolean(defaultValue = false): {
 	state: boolean
 	action: TAction
 } {
-	const [state, setState] = useState(() => {
-		if (isDev) {
-			if (!isBoolean(defaultValue)) {
-				console.error(
-					`useBoolean: parameter \`defaultValue\` expected to be a boolean, but got "${typeof defaultValue}".`
-				)
-			}
-			return !!defaultValue
-		}
-		return !!defaultValue
-	})
+	const {
+		state,
+		action: { toggle, set },
+	} = useToggle(defaultValue)
 
-	// useMemo can avoid rerender from other state change
 	const action = useMemo(() => {
+		const setTrue = () => set(true)
+		const setFalse = () => set(false)
 		return {
-			toggle: () => {
-				setState(!state)
-			},
-			set: (value: boolean) => {
-				if (isDev) {
-					if (!isBoolean(value)) {
-						console.error(
-							`useBoolean: parameter \`defaultValue\` expected to be a boolean, but got "${typeof value}".`
-						)
-					}
-					setState(!!value)
-				}
-				setState(!!value)
-			},
-			setTrue: () => {
-				setState(true)
-			},
-			setFalse: () => {
-				setState(false)
-			},
+			set,
+			setTrue,
+			setFalse,
+			toggle,
 		}
 	}, [])
 
