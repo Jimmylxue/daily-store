@@ -1,11 +1,10 @@
 import { isReactRef } from '@daily-store/common/utils'
 import { useLayoutEffect } from 'react'
 import { useCallback } from 'react'
-import { useMemo } from 'react'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 type TOptions = {
-	target: any
+	target?: any
 	once?: boolean
 	capture?: boolean
 	passive?: boolean
@@ -16,16 +15,6 @@ function isDOM(target: any) {
 }
 
 function getRealTarget(target: any) {
-	// switch (target) {
-	// 	case isReactRef(target):
-	// 		return target.current
-	// 	case isDOM(target):
-	// 		return target
-	// 	case target === 'Document':
-	// 		return document
-	// 	default:
-	// 		return window
-	// }
 	if (isReactRef(target)) {
 		return target?.current
 	}
@@ -55,11 +44,8 @@ export default function useEventListener(
 		[option?.target]
 	)
 
-	// useEffect(() => {
 	useLayoutEffect(() => {
-		console.log('option', option?.target)
 		const realTarget = getRealTarget(option?.target)
-		console.log('res', realTarget)
 
 		realTarget.addEventListener(eventName, fn)
 		return () => {
