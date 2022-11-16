@@ -1,5 +1,5 @@
 {
-	"name": "@daily-store/hooks",
+	"name": "@daily-store/snowhooks",
 	"version": "1.0.0",
 	"description": "@daily-store/hooks",
 	"main": "index.ts",

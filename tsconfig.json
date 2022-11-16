@@ -6,6 +6,7 @@
     "strict": true,
     "sourceMap": true,
     "esModuleInterop": true,
-    "types":["node","jest"]
+    "types":["node","jest"],
+    "jsx": "react-jsx"
   }
 }
