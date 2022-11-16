@@ -13,3 +13,7 @@ export function isFunction(value: unknown): value is Function {
 export function isBoolean(value: unknown): value is Boolean {
 	return typeof value === 'boolean'
 }
+
+export const isReactRef = (target: any): boolean => {
+	return !!target?.current
+}
