@@ -7,8 +7,8 @@
 	"scripts": {
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"docs:start": "pnpm -C ./packages/docs start",
-		"docs:build": "pnpm -C ./packages/docs docs:build"
+		"docs:start": "pnpm -C ./packages/snowdocs start",
+		"docs:build": "pnpm -C ./packages/snowdocs docs:build"
 	},
 	"keywords": [],
 	"author": "",
