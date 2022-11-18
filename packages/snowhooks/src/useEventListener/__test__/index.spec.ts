@@ -3,17 +3,31 @@ import useEventListener from '../index'
 
 describe('>>> useEventListener', () => {
 	let container: HTMLDivElement
+	let state = 0
 
 	beforeEach(() => {
+		state = 0
 		container = document.createElement('div')
 		document.body.appendChild(container)
 	})
 
+	const click = () => {
+		state++
+	}
+
+	it('test function target', () => {
+		renderHook(() =>
+			useEventListener('click', click, { target: () => container })
+		)
+		document.body.click()
+		expect(state).toBe(0)
+		container.click()
+		expect(state).toBe(1)
+		container.click()
+		expect(state).toBe(2)
+	})
+
 	it('test click event', () => {
-		let state = 0
-		const click = () => {
-			state++
-		}
 		const { rerender, unmount } = renderHook(() =>
 			useEventListener('click', click, { target: container })
 		)

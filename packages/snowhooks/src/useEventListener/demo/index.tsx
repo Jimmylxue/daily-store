@@ -13,7 +13,6 @@ export default function UseEventListenerDemo() {
 		},
 		{
 			target: dom,
-			// target: ref,
 		}
 	)
 
@@ -37,6 +36,16 @@ export default function UseEventListenerDemo() {
 		}
 	)
 
+	useEventListener(
+		'click',
+		() => {
+			console.log('DOM_FN say hello world')
+		},
+		{
+			target: () => document.getElementById('eventListenerDOM_FN'),
+		}
+	)
+
 	useEffect(() => {
 		setDom(document.getElementById('eventListenerDOM'))
 	}, [])
@@ -44,6 +53,7 @@ export default function UseEventListenerDemo() {
 	return (
 		<div>
 			<div id="eventListenerDOM">DOM TEST</div>
+			<div id="eventListenerDOM_FN">FNDOM TEST</div>
 			<div ref={ref}>DOMRef TEST</div>
 		</div>
 	)

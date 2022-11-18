@@ -15,5 +15,5 @@ export function isBoolean(value: unknown): value is Boolean {
 }
 
 export const isReactRef = (target: any): boolean => {
-	return !!target?.current
+	return target?.hasOwnProperty('current') && Object.keys(target).length === 1
 }

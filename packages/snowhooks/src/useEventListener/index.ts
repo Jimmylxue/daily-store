@@ -1,4 +1,4 @@
-import { isReactRef } from '@daily-store/common/utils'
+import { isFunction, isReactRef } from '@daily-store/common/utils'
 import { useLayoutEffect } from 'react'
 import { useCallback } from 'react'
 import { useRef } from 'react'
@@ -15,6 +15,10 @@ function isDOM(target: any) {
 }
 
 function getRealTarget(target: any) {
+	if (isFunction(target)) {
+		return target?.()
+	}
+
 	if (isReactRef(target)) {
 		return target?.current
 	}
