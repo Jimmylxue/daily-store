@@ -1,0 +1,16 @@
+{
+	"name": "@daily-store/snowtiny",
+	"version": "1.0.0",
+	"description": "@daily-store/snowtiny",
+	"main": "index.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc",
+		"init": "tsc --init",
+		"dev": "node index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {}
+}
