@@ -1,13 +1,17 @@
 import fs from 'fs'
 import { resolve } from 'path'
-import { TFileObject } from './types'
+import { assignTask } from './core/tasks'
+import { TFileItem, TFileObject } from './types'
 import { isDir, isImage, isInvalidFile } from './utils'
+
+const uploadList: TFileItem[] = []
 
 function scanFire(input: string, output: string): TFileObject {
 	const objStruct: TFileObject = {}
 	const path = resolve(__dirname, `${input}`)
 	diffFile(path, objStruct, input)
 	outputFile(objStruct, resolve(__dirname, `${output}`))
+	assignTask(uploadList)
 	return objStruct
 }
 
@@ -38,11 +42,13 @@ function diffFile(path: string, obj: TFileObject, entry: string) {
 					obj.fileChildren = []
 				}
 				if (!isInvalidFile(item)) {
+					const isImageFile = isImage(item)
 					obj.fileChildren?.push({
 						isDir: false,
-						isImage: isImage(item),
+						isImage: isImageFile,
 						fileName: item,
 						fullRoute: path + '/' + item,
+						outputRoute: '',
 					})
 				}
 			}
@@ -56,9 +62,17 @@ function outputFile(fileStruct: TFileObject, output: string) {
 	fs.mkdirSync(output)
 	fileStruct.fileChildren?.map(fileItemInfo => {
 		const { fileName, fullRoute } = fileItemInfo
-		const file = fs.readFileSync(fullRoute)
-		console.log('写入完成：', fileName)
-		fs.writeFileSync(`${output}/${fileName}`, file)
+		if (fileItemInfo.isImage) {
+			uploadList.push({
+				...fileItemInfo,
+				outputRoute: `${output}/${fileName}`,
+			})
+		} else {
+			fileItemInfo.outputRoute = `${output}/${fileName}`
+			const file = fs.readFileSync(fullRoute)
+			console.log('非图片资源-写入完成：', fileName)
+			fs.writeFileSync(`${output}/${fileName}`, file)
+		}
 	})
 
 	fileStruct.dirChildren?.map(dirItemInfo => {
