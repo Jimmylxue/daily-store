@@ -6,7 +6,7 @@ const cpuNums = Os.cpus().length
 
 export function assignTask(taskList: TFileItem[]) {
 	cluster.setupPrimary({
-		exec: resolve(__dirname, 'process.js'),
+		exec: resolve(__dirname, './process.js'),
 	})
 
 	const works: any[] = []
@@ -34,10 +34,6 @@ export function assignTask(taskList: TFileItem[]) {
 	})
 
 	// 用于记录进程完成数
-	let pageNum = works.length
-	let succeedNum = 0 // 成功资源数
-	let failNum = 0 // 失败资源数
-	const failMsg: Array<string> = [] // 失败列表
 
 	works.forEach(({ work, tasks }) => {
 		work.send(tasks)

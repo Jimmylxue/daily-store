@@ -1,16 +1,57 @@
 {
-	"name": "@daily-store/snowtiny",
-	"version": "1.0.0",
-	"description": "@daily-store/snowtiny",
-	"main": "index.ts",
+	"name": "snowtiny",
+	"version": "0.0.1",
+	"description": "压缩图片资源工具",
+	"main": "dist/snowtiny.cjs.prod.js",
+	"module": "dist/snowtiny.esm.prod.js",
+	"types": "dist/types/index.d.ts",
+	"bin": {
+		"snow": "./bin/index.js"
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc",
 		"init": "tsc --init",
-		"dev": "node index.js"
+		"dev": "node index.js",
+		"build-d": "rollup -c"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"image",
+		"compress",
+		"tiny"
+	],
+	"author": "Jimmylxue",
 	"license": "ISC",
-	"devDependencies": {}
+	"dependencies": {
+		"@babel/runtime": "^7.18.9",
+		"chalk": "4.1.0",
+		"console-grid": "^2.0.1",
+		"inquirer": "8.0.0",
+		"ora": "5.4.1",
+		"pako": "1.0.6",
+		"protobufjs": "6.9.0",
+		"single-line-log": "^1.1.2",
+		"slog-progress": "1.1.4"
+	},
+	"devDependencies": {
+		"@babel/plugin-transform-runtime": "^7.18.9",
+		"@babel/preset-env": "^7.18.9",
+		"@babel/preset-typescript": "^7.18.6",
+		"@rollup/plugin-babel": "^5.3.1",
+		"@rollup/plugin-commonjs": "^22.0.1",
+		"@rollup/plugin-eslint": "^8.0.2",
+		"@rollup/plugin-node-resolve": "^13.3.0",
+		"@types/chalk": "2.2.0",
+		"@types/inquirer": "8.2.1",
+		"@types/jest": "^28.1.6",
+		"@typescript-eslint/eslint-plugin": "^5.30.7",
+		"@typescript-eslint/parser": "^5.30.7",
+		"eslint": "^8.20.0",
+		"prettier": "^2.7.1",
+		"rollup": "^2.64.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"rollup-plugin-typescript2": "^0.32.1",
+		"ts-jest": "^28.0.7",
+		"tslib": "^2.4.0"
+	}
 }

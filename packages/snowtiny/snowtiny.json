@@ -1,0 +1,5 @@
+{
+	"entry": "./images",
+	"output": "./temp",
+	"diffChange": true
+}

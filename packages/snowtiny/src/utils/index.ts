@@ -30,3 +30,21 @@ export function isDir(pathName: string): boolean {
 export function isInvalidFile(fileName: string): boolean {
 	return !!fileName.startsWith('.')
 }
+
+enum Esize {
+	B,
+	KB,
+	MB,
+	GB,
+	TB,
+	PB,
+	EB,
+	ZB,
+	YB,
+}
+export function byteSize(byte = 0) {
+	if (byte === 0) return '0 B'
+	const unit = 1024
+	const i = Math.floor(Math.log(byte) / Math.log(unit))
+	return (byte / Math.pow(unit, i)).toPrecision(3) + ' ' + Esize[i]
+}
