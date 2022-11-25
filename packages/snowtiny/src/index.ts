@@ -1,17 +1,15 @@
-// const inquirer = require('inquirer')
 import chalk from 'chalk'
-import fs from 'fs'
 import { resolve } from 'path'
-import { TDetail, TFileItem, TFileObject } from './types'
-import { byteSize, isDir, isImage, isInvalidFile } from './utils'
+import { TDetail, TFileItem, TFileObject, TSnowConfig } from './types'
+import { byteSize } from './utils'
 import Os from 'os'
 import Slogbar from 'slog-progress'
 import Ora from 'ora'
+import { diffFile, outputFile } from './core/file'
 const cluster = require('cluster')
 const cpuNums = Os.cpus().length
 const CG = require('console-grid')
 let spinner: Ora.Ora // ora载体
-// const chalk = require('chalk')
 const progress = new Slogbar(
 	'progress :percent  :token :bar  :current/:total \n',
 	50
@@ -21,86 +19,19 @@ let inputSize = 0 // 输入总体积
 let outputSize = 0 // 输出总体积
 let ratio = 0 // 压缩比
 
+let snowTinyConfig: TSnowConfig | null
+
 const uploadList: TFileItem[] = []
 
-function scanFire(input: string, output: string): TFileObject {
-	// console.log('~~~~~')
+function main(input: string, output: string): TFileObject {
 	spinner = Ora()
-
-	// spinner.start()
 	const objStruct: TFileObject = {}
 	const path = resolve(process.cwd(), `${input}`)
 	diffFile(path, objStruct, input)
 	spinner.stop()
-	outputFile(objStruct, resolve(process.cwd(), `${output}`))
+	outputFile(objStruct, resolve(process.cwd(), `${output}`), uploadList)
 	assignTask(uploadList)
 	return objStruct
-}
-
-function diffFile(path: string, obj: TFileObject, entry: string) {
-	spinner.info(`正在搜索 「${chalk.blueBright(entry)}」 ......`)
-	obj.dirRoute = path
-	obj.dirname = entry
-	let res = fs.readdirSync(path)
-	if (res) {
-		res.map(item => {
-			if (isDir(path + '/' + item)) {
-				// isDirectory
-				if (!obj.dirChildren) {
-					obj.dirChildren = []
-				}
-				if (!obj.dirChildren.find(dir => dir.dirRoute === item)) {
-					obj.dirChildren.push({
-						dirRoute: item,
-					})
-				}
-				diffFile(
-					path + '/' + item,
-					obj.dirChildren?.find(dir => dir.dirRoute === item)!,
-					item
-				)
-			} else {
-				// is file
-				if (!obj.fileChildren) {
-					obj.fileChildren = []
-				}
-				if (!isInvalidFile(item)) {
-					const isImageFile = isImage(item)
-					obj.fileChildren?.push({
-						isDir: false,
-						isImage: isImageFile,
-						fileName: item,
-						fullRoute: path + '/' + item,
-						outputRoute: '',
-					})
-				}
-			}
-		})
-	} else {
-		console.warn('空目录')
-	}
-}
-
-function outputFile(fileStruct: TFileObject, output: string) {
-	fs.mkdirSync(output)
-	fileStruct.fileChildren?.map(fileItemInfo => {
-		const { fileName, fullRoute } = fileItemInfo
-		if (fileItemInfo.isImage) {
-			uploadList.push({
-				...fileItemInfo,
-				outputRoute: `${output}/${fileName}`,
-			})
-		} else {
-			fileItemInfo.outputRoute = `${output}/${fileName}`
-			const file = fs.readFileSync(fullRoute)
-			spinner.succeed(`非图片资源-写入完成：${chalk.blueBright(fileName)}`)
-			fs.writeFileSync(`${output}/${fileName}`, file)
-		}
-	})
-
-	fileStruct.dirChildren?.map(dirItemInfo => {
-		outputFile(dirItemInfo, output + '/' + dirItemInfo.dirname)
-	})
 }
 
 function assignTask(taskList: TFileItem[]) {
@@ -209,7 +140,7 @@ function assignTask(taskList: TFileItem[]) {
 				const totalRatio = ratio / succeedNum
 
 				spinner.succeed(
-					`压缩完成：\n 输入图片总大小：${chalk.red(
+					`压缩完成：\n 输出图片总大小：${chalk.red(
 						byteSize(inputSize)
 					)} \n 输入图片总大小：${chalk.green(
 						byteSize(outputSize)
@@ -225,6 +156,7 @@ function assignTask(taskList: TFileItem[]) {
 }
 
 export default () => {
-	const snowtiny = require(resolve(process.cwd(), 'snowtiny.json'))
-	scanFire(snowtiny.entry, snowtiny.output)
+	// resolve(process.cwd() 获取执行命令时的路径
+	snowTinyConfig = require(resolve(process.cwd(), 'snowtiny.json'))
+	main(snowTinyConfig!.entry, snowTinyConfig!.output)
 }
