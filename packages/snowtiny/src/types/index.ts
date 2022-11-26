@@ -41,6 +41,6 @@ export type TSnowConfig = {
 	entry: string
 	output: string
 	diffCompress: boolean // diff压缩
-	Tile: boolean
+	tile: boolean
 	saveOther: boolean
 }

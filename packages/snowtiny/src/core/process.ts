@@ -1,7 +1,9 @@
 import fs from 'fs'
+import { resolve as fileResolve } from 'path'
 import { TDetail, TFileItem } from '../types'
 import { tagBuf } from '../utils/upload'
 import { download, upload } from './upload'
+import { snowTinyConfig } from '../core/context'
 
 // 接受进程任务
 process.on('message', (tasks: TFileItem[]) => {
@@ -11,12 +13,23 @@ process.on('message', (tasks: TFileItem[]) => {
 		const details = await Promise.all([...data.map(fn => fn())])
 
 		await Promise.all(
-			details.map(({ path, file }) => {
+			details.map(({ path, file, fileName }) => {
 				new Promise((resolve, reject) => {
-					fs.writeFile(path, Buffer.concat([file, tagBuf]), err => {
-						if (err) reject(err)
-						resolve(true)
-					})
+					if (!snowTinyConfig?.tile) {
+						fs.writeFile(path, Buffer.concat([file, tagBuf]), err => {
+							if (err) reject(err)
+							resolve(true)
+						})
+					} else {
+						fs.writeFile(
+							fileResolve(process.cwd(), snowTinyConfig.output, fileName),
+							Buffer.concat([file, tagBuf]),
+							err => {
+								if (err) reject(err)
+								resolve(true)
+							}
+						)
+					}
 				})
 			})
 		)

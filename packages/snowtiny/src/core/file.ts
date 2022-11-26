@@ -1,11 +1,16 @@
 import Ora from 'ora'
 import chalk from 'chalk'
 import { readdirSync, mkdirSync, writeFileSync, readFileSync } from 'fs'
-import { TFileItem, TFileObject } from 'src/types'
+import { TFileItem, TFileObject, TSnowConfig } from 'src/types'
 import { isDir, isImage, isInvalidFile } from 'src/utils'
 let spinner: Ora.Ora // ora载体
 
-export function diffFile(path: string, obj: TFileObject, entry: string) {
+export function diffFile(
+	path: string,
+	obj: TFileObject,
+	entry: string,
+	snowConfig: TSnowConfig
+) {
 	spinner = Ora()
 	spinner.info(`正在搜索 「${chalk.blueBright(entry)}」 ......`)
 	obj.dirRoute = path
@@ -23,10 +28,14 @@ export function diffFile(path: string, obj: TFileObject, entry: string) {
 						dirRoute: item,
 					})
 				}
+				if (!snowConfig.diffCompress) {
+					return
+				}
 				diffFile(
 					path + '/' + item,
 					obj.dirChildren?.find(dir => dir.dirRoute === item)!,
-					item
+					item,
+					snowConfig
 				)
 			} else {
 				// is file
@@ -53,7 +62,8 @@ export function diffFile(path: string, obj: TFileObject, entry: string) {
 export function outputFile(
 	fileStruct: TFileObject,
 	output: string,
-	uploadList: TFileItem[]
+	uploadList: TFileItem[],
+	snowTinyConfig: TSnowConfig
 ) {
 	mkdirSync(output)
 	fileStruct.fileChildren?.map(fileItemInfo => {
@@ -71,7 +81,15 @@ export function outputFile(
 		}
 	})
 
+	if (!snowTinyConfig?.diffCompress!) {
+		return
+	}
 	fileStruct.dirChildren?.map(dirItemInfo => {
-		outputFile(dirItemInfo, output + '/' + dirItemInfo.dirname, uploadList)
+		outputFile(
+			dirItemInfo,
+			output + '/' + dirItemInfo.dirname,
+			uploadList,
+			snowTinyConfig
+		)
 	})
 }

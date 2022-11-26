@@ -8,7 +8,9 @@
 		"test:watch": "jest --watch",
 		"docs:start": "pnpm -C ./packages/snowdocs start",
 		"docs:build": "pnpm -C ./packages/snowdocs docs:build",
-		"web:dev": "pnpm -C ./packages/snowweb dev"
+		"web:dev": "pnpm -C ./packages/snowweb dev",
+		"tiny:build": "pnpm -C ./packages/snowtiny build-d",
+		"tiny:dev": "pnpm -C ./packages/snowtiny dev"
 	},
 	"keywords": [],
 	"author": "",
