@@ -74,10 +74,13 @@ export function outputFile(
 				outputRoute: `${output}/${fileName}`,
 			})
 		} else {
-			fileItemInfo.outputRoute = `${output}/${fileName}`
-			const file = readFileSync(fullRoute)
-			spinner.succeed(`非图片资源-写入完成：${chalk.blueBright(fileName)}`)
-			writeFileSync(`${output}/${fileName}`, file)
+			if (snowTinyConfig.saveOther) {
+				// 是否存入非图片资源
+				fileItemInfo.outputRoute = `${output}/${fileName}`
+				const file = readFileSync(fullRoute)
+				spinner.succeed(`非图片资源-写入完成：${chalk.blueBright(fileName)}`)
+				writeFileSync(`${output}/${fileName}`, file)
+			}
 		}
 	})
 

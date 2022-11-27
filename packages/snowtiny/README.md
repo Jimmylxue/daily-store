@@ -8,7 +8,7 @@ snow-tiny 是一个专为前端同学开发的基于 tiny 的简单、轻量级�
 
 只需三步，就可实现图片自动化压缩，极大提高效率和压缩体验！
 
-![压缩效果图](https://vitepress-source.oss-cn-beijing.aliyuncs.com/typoraimage-20221120164649326.png)
+![image-20221127111339637](https://vitepress-source.oss-cn-beijing.aliyuncs.com/typoraimage-20221127111339637.png)
 
 开发文档: [传送门](http://www.jimmyxuexue.top:999/snowtiny/guide/introduce.html)
 
@@ -34,12 +34,15 @@ yarn add snow-tiny
 
 项目根目录下新建 `snowtiny.json` 并做如下配置：
 
+> 具体配置信息见:[传送门](http://www.jimmyxuexue.top:999/snowtiny/usage/config.html)
+
 ```json
-// snowtiny.json
 {
-	"entry": "./images",  // 压缩目标文件夹
-	"output": "./temp",  // 输出文件夹
-	"diffChange": true  // 是否深层遍历压缩
+	"entry": "./images",
+	"output": "./temp",
+	"diffCompress": true,
+	"tile": true,
+	"saveOther": true
 }
 ```
 
@@ -56,4 +59,3 @@ scripts: {
 ```
 npm run compress
 ```
-

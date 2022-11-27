@@ -16,3 +16,4 @@ tsconfig.json
 rollup.config.js
 images/
 temp/
+snowtiny.json

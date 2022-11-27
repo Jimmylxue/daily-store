@@ -6,7 +6,6 @@ import Os from 'os'
 import Slogbar from 'slog-progress'
 import Ora from 'ora'
 import { diffFile, outputFile } from './core/file'
-import { setState } from './core/context'
 const cluster = require('cluster')
 const cpuNums = Os.cpus().length
 const CG = require('console-grid')
@@ -46,8 +45,6 @@ function main(input: string, output: string): TFileObject {
 
 function assignTask(taskList: TFileItem[]) {
 	//  开始时间
-	// const dateStart = +new Date()
-
 	cluster.setupPrimary({
 		exec: resolve(__dirname, 'core/process.js'),
 	})
@@ -91,7 +88,7 @@ function assignTask(taskList: TFileItem[]) {
 	})
 
 	works.forEach(({ work, tasks }) => {
-		work.send(tasks)
+		work.send({ tasks, snowTinyConfig })
 		// // 接收到进程的成功消息
 
 		work.on('message', (details: TDetail[]) => {
@@ -167,7 +164,6 @@ function assignTask(taskList: TFileItem[]) {
 
 export default () => {
 	// resolve(process.cwd() 获取执行命令时的路径
-	setState(require(resolve(process.cwd(), 'snowtiny.json')))
-	// snowTinyConfig = require(resolve(process.cwd(), 'snowtiny.json'))
+	snowTinyConfig = require(resolve(process.cwd(), 'snowtiny.json'))
 	main(snowTinyConfig!.entry, snowTinyConfig!.output)
 }

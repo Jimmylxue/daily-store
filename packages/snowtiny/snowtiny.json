@@ -2,6 +2,6 @@
 	"entry": "./images",
 	"output": "./temp",
 	"diffCompress": true,
-	"tile": false,
-	"saveOther": true
+	"tile": true,
+	"saveOther": false
 }
