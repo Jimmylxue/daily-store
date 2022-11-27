@@ -1,6 +1,6 @@
 {
 	"name": "snow-tiny",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "压缩图片资源工具",
 	"main": "dist/snowtiny.cjs.prod.js",
 	"module": "dist/snowtiny.esm.prod.js",
