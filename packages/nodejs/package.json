@@ -1,0 +1,15 @@
+{
+	"name": "@daily-store/nodejs",
+	"version": "1.0.0",
+	"description": "@daily-store/nodejs",
+	"main": "index.ts",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {}
+}
