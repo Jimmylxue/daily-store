@@ -13,7 +13,8 @@
 		"build": "tsc",
 		"init": "tsc --init",
 		"dev": "node ./bin/index.js",
-		"build-d": "rollup -c"
+		"build-d": "rollup -c",
+		"test-w": "jest --watch"
 	},
 	"keywords": [
 		"image",
@@ -44,6 +45,7 @@
 		"@types/chalk": "2.2.0",
 		"@types/inquirer": "8.2.1",
 		"@types/jest": "^28.1.6",
+		"jest-environment-jsdom": "^29.3.1",
 		"@typescript-eslint/eslint-plugin": "^5.30.7",
 		"@typescript-eslint/parser": "^5.30.7",
 		"eslint": "^8.20.0",

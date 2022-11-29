@@ -1,7 +1,8 @@
 {
-	"entry": "./images",
+	"entry": "./image",
 	"output": "./temp",
 	"diffCompress": true,
 	"tile": false,
-	"saveOther": true
+	"saveOther": true,
+	"include": [".png", ".jpg", ".jpeg"]
 }

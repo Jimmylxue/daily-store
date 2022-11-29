@@ -31,6 +31,14 @@ export function isInvalidFile(fileName: string): boolean {
 	return !!fileName.startsWith('.')
 }
 
+export function isAcceptFile(
+	fileName: string,
+	acceptList: string[] = ['png', 'jpg', 'jpeg']
+) {
+	const regexp = new RegExp(`.(${acceptList.join('|')})$`)
+	return regexp.test(fileName)
+}
+
 enum Esize {
 	B,
 	KB,

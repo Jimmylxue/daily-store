@@ -1,5 +1,6 @@
 export type TFileItem = {
 	isImage: boolean
+	isAcceptImage: boolean // 是否是接受的图片
 	isDir: boolean
 	fileName: string
 	children?: TFileItem
@@ -43,4 +44,5 @@ export type TSnowConfig = {
 	diffCompress: boolean // diff压缩
 	tile: boolean
 	saveOther: boolean
+	include: string[]
 }

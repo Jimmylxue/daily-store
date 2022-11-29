@@ -2,7 +2,7 @@ import Ora from 'ora'
 import chalk from 'chalk'
 import { readdirSync, mkdirSync, writeFileSync, readFileSync } from 'fs'
 import { TFileItem, TFileObject, TSnowConfig } from 'src/types'
-import { isDir, isImage, isInvalidFile } from 'src/utils'
+import { isAcceptFile, isDir, isImage, isInvalidFile } from 'src/utils'
 let spinner: Ora.Ora // ora载体
 
 export function diffFile(
@@ -11,6 +11,7 @@ export function diffFile(
 	entry: string,
 	snowConfig: TSnowConfig
 ) {
+	const { diffCompress, include: includeFiles } = snowConfig
 	spinner = Ora()
 	spinner.info(`正在搜索 「${chalk.blueBright(entry)}」 ......`)
 	obj.dirRoute = path
@@ -28,7 +29,7 @@ export function diffFile(
 						dirRoute: item,
 					})
 				}
-				if (!snowConfig.diffCompress) {
+				if (!diffCompress) {
 					return
 				}
 				diffFile(
@@ -43,10 +44,10 @@ export function diffFile(
 					obj.fileChildren = []
 				}
 				if (!isInvalidFile(item)) {
-					const isImageFile = isImage(item)
 					obj.fileChildren?.push({
 						isDir: false,
-						isImage: isImageFile,
+						isImage: isImage(item),
+						isAcceptImage: isAcceptFile(item, includeFiles),
 						fileName: item,
 						fullRoute: path + '/' + item,
 						outputRoute: '',
@@ -65,16 +66,27 @@ export function outputFile(
 	uploadList: TFileItem[],
 	snowTinyConfig: TSnowConfig
 ) {
+	const { saveOther } = snowTinyConfig
 	mkdirSync(output)
 	fileStruct.fileChildren?.map(fileItemInfo => {
-		const { fileName, fullRoute } = fileItemInfo
+		const { fileName, fullRoute, isAcceptImage } = fileItemInfo
 		if (fileItemInfo.isImage) {
-			uploadList.push({
-				...fileItemInfo,
-				outputRoute: `${output}/${fileName}`,
-			})
+			if (isAcceptImage) {
+				uploadList.push({
+					...fileItemInfo,
+					outputRoute: `${output}/${fileName}`,
+				})
+			} else {
+				// 是否存入非图片资源
+				fileItemInfo.outputRoute = `${output}/${fileName}`
+				const file = readFileSync(fullRoute)
+				spinner.succeed(
+					`非接受的压缩的图片-写入完成：${chalk.blueBright(fileName)}`
+				)
+				writeFileSync(`${output}/${fileName}`, file)
+			}
 		} else {
-			if (snowTinyConfig.saveOther) {
+			if (saveOther) {
 				// 是否存入非图片资源
 				fileItemInfo.outputRoute = `${output}/${fileName}`
 				const file = readFileSync(fullRoute)
