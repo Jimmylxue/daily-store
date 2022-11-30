@@ -1,33 +1,19 @@
-import { isFunction, isReactRef } from '@daily-store/common/utils'
+import { TTargetType } from '@daily-store/common/types'
+import {
+	getRealTarget,
+	isDOM,
+	isFunction,
+	isReactRef,
+} from '@daily-store/common/utils'
 import { useLayoutEffect } from 'react'
 import { useCallback } from 'react'
 import { useRef } from 'react'
 
 type TOptions = {
-	target?: any
+	target?: TTargetType
 	once?: boolean
 	capture?: boolean
 	passive?: boolean
-}
-
-function isDOM(target: any) {
-	return !!(target instanceof HTMLElement)
-}
-
-function getRealTarget(target: any) {
-	if (isFunction(target)) {
-		return target?.()
-	}
-
-	if (isReactRef(target)) {
-		return target?.current
-	}
-
-	if (isDOM(target)) {
-		return target
-	}
-
-	return window
 }
 
 export default function useEventListener(
@@ -51,9 +37,9 @@ export default function useEventListener(
 	useLayoutEffect(() => {
 		const realTarget = getRealTarget(option?.target)
 
-		realTarget.addEventListener(eventName, fn)
+		realTarget?.addEventListener(eventName, fn)
 		return () => {
-			realTarget.removeEventListener(eventName, fn)
+			realTarget?.removeEventListener(eventName, fn)
 		}
 	}, [option?.target])
 }
