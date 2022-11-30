@@ -1,8 +1,14 @@
 import Ora from 'ora'
 import chalk from 'chalk'
-import { readdirSync, mkdirSync, writeFileSync, readFileSync } from 'fs'
+import { readdirSync, mkdirSync } from 'fs'
 import { TFileItem, TFileObject, TSnowConfig } from 'src/types'
-import { isAcceptFile, isDir, isImage, isInvalidFile } from 'src/utils'
+import {
+	copyFile,
+	isAcceptFile,
+	isDir,
+	isImage,
+	isInvalidFile,
+} from 'src/utils'
 let spinner: Ora.Ora // ora载体
 
 export function diffFile(
@@ -77,21 +83,21 @@ export function outputFile(
 					outputRoute: `${output}/${fileName}`,
 				})
 			} else {
-				// 是否存入非图片资源
 				fileItemInfo.outputRoute = `${output}/${fileName}`
-				const file = readFileSync(fullRoute)
-				spinner.succeed(
-					`非接受的压缩的图片-写入完成：${chalk.blueBright(fileName)}`
-				)
-				writeFileSync(`${output}/${fileName}`, file)
+				// 是否存入非压缩的图片资源
+				copyFile(fullRoute, `${output}/${fileName}`, () => {
+					spinner.succeed(
+						`非接受的压缩的图片-写入完成：${chalk.blueBright(fileName)}`
+					)
+				})
 			}
 		} else {
 			if (saveOther) {
 				// 是否存入非图片资源
 				fileItemInfo.outputRoute = `${output}/${fileName}`
-				const file = readFileSync(fullRoute)
-				spinner.succeed(`非图片资源-写入完成：${chalk.blueBright(fileName)}`)
-				writeFileSync(`${output}/${fileName}`, file)
+				copyFile(fullRoute, `${output}/${fileName}`, () => {
+					spinner.succeed(`非图片资源-写入完成：${chalk.blueBright(fileName)}`)
+				})
 			}
 		}
 	})

@@ -12,3 +12,7 @@ const __dirname = path.resolve()
 const readable = createReadStream(__dirname + '/demo.txt')
 const writeable = createWriteStream(__dirname + '/demoCopy.txt')
 readable.pipe(writeable)
+
+writeable.on('close', () => {
+	console.log('写入完成')
+})

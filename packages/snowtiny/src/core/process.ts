@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { resolve as fileResolve } from 'path'
 import { TDetail, TFileItem, TSnowConfig } from '../types'
-import { tagBuf } from '../utils/upload'
+import { tagBuf } from '../utils'
 import { download, upload } from './upload'
 
 // 接受进程任务
