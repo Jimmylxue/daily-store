@@ -3,7 +3,7 @@ import UseImageDemo from '@daily-store/snowhooks/src/useImage/demo'
 import UseEventListenerDOM from '@daily-store/snowhooks/src/useEventListener/demo'
 import UseAsyncEffectDemo1 from '@daily-store/snowhooks/src/useAsyncEffect/demo/demo1'
 import UseAsyncEffectDemo2 from '@daily-store/snowhooks/src/useAsyncEffect/demo/demo2'
-import UseTextSelectionDemo from '@daily-store/snowhooks/src/useTextSelection/demo'
+import UseScrollDemo from '@daily-store/snowhooks/src/useScroll/demo'
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -14,7 +14,7 @@ function App() {
 			<UseEventListenerDOM />
 			<UseAsyncEffectDemo1 />
 			<UseAsyncEffectDemo2 />
-			<UseTextSelectionDemo />
+			<UseScrollDemo />
 		</div>
 	)
 }

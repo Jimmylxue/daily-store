@@ -1,6 +1,6 @@
 import { mkdir, writeFile, unlink, rmdir, unlinkSync, rmdirSync } from 'fs'
 let hasLocke = false
-const lockDir = 'config.lock'
+const lockDir = 'lockDir'
 
 /**
  *
@@ -51,7 +51,7 @@ export function unlock(callback) {
 process.on('exit', () => {
 	if (hasLocke) {
 		unlinkSync(lockDir + '/' + process.pid)
-		rmdirSync(lockDir)
+		// rmdirSync(lockDir)
 		console.log('removed lock')
 	}
 })

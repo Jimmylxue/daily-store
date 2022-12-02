@@ -3,6 +3,7 @@
  */
 
 import { MutableRefObject } from 'react'
+import { TargetType, TargetValue } from '../types'
 
 export const isDev =
 	process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
@@ -16,12 +17,20 @@ export function isBoolean(value: unknown): value is Boolean {
 	return typeof value === 'boolean'
 }
 
-export const isReactRef = (
+export function isReactRef<T extends TargetType>(
 	target: any
-): target is MutableRefObject<Element> => {
+): target is MutableRefObject<TargetValue<T>> {
 	return target?.hasOwnProperty('current') && Object.keys(target).length === 1
 }
 
 export function isDOM(target: any) {
 	return !!(target instanceof HTMLElement)
+}
+
+export function isBrowser(): boolean {
+	return !!(
+		typeof window !== 'undefined' &&
+		window.document &&
+		window.document.createElement
+	)
 }
