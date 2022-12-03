@@ -1,6 +1,5 @@
-import http from 'http'
 import path from 'path'
-import { readFile, readFileSync, writeFile, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 const __dirname = path.resolve()
 
 console.time('Sync')
