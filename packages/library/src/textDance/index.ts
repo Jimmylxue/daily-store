@@ -1,4 +1,4 @@
-import './index.css'
+import './index.less'
 
 export function getTextArrayContent(app: HTMLElement): string[] | undefined {
 	if (!app.textContent) {

@@ -5,6 +5,8 @@ import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
 
 const extensions = ['.ts', '.tsx']
 
@@ -35,7 +37,11 @@ function baseConfig(isProd, type) {
 				plugins: [['@babel/plugin-transform-runtime']],
 				babelHelpers: 'runtime',
 			}),
-			postcss(),
+			postcss({
+				plugins: [autoprefixer(), cssnano()],
+				extract: 'css/index.css',
+				extensions: ['.less'],
+			}),
 			// eslint({
 			// 	throwOnError: true,
 			// 	throwOnWarning: true,
