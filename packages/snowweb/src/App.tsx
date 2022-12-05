@@ -4,12 +4,15 @@ import UseEventListenerDOM from '@daily-store/snowhooks/src/useEventListener/dem
 import UseAsyncEffectDemo1 from '@daily-store/snowhooks/src/useAsyncEffect/demo/demo1'
 import UseAsyncEffectDemo2 from '@daily-store/snowhooks/src/useAsyncEffect/demo/demo2'
 import UseScrollDemo from '@daily-store/snowhooks/src/useScroll/demo'
+import LuckDraw from './components/luckDraw'
+import { mockList } from './components/luckDraw/mock'
 
 function App() {
 	const [count, setCount] = useState(0)
 
 	return (
 		<div className="App">
+			<LuckDraw prizeList={mockList} />
 			<UseImageDemo />
 			<UseEventListenerDOM />
 			<UseAsyncEffectDemo1 />
