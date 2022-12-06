@@ -8,7 +8,6 @@ export function getNineLatticeInfo(
 	prizeList: TOriginPrizeItem[]
 ): TShowList | undefined {
 	if (prizeList.length !== 8) {
-		// console.error('数据源错误')
 		throw new Error('数据源错误')
 	}
 	const tempPrizeList = prizeList.map(prize => ({

@@ -33,7 +33,6 @@ export default function useAsyncEffect(
 			 * as we all know generator also an async function
 			 */
 			if (isAsyncGenerator(e)) {
-				console.log('ddd')
 				while (true) {
 					const result = await e.next()
 					if (result.done || cancelled) {
