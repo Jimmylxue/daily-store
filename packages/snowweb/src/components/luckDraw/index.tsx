@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import { TLuckDrawInterface } from './core/types'
 import useDrawLayout from './core/useDrawLayout'
 
 type TProps = {
@@ -7,10 +8,10 @@ type TProps = {
 	}[]
 }
 
-export default memo(({ prizeList }: TProps) => {
+export default memo<TLuckDrawInterface>(({ prizeList, drawType }) => {
 	const { node } = useDrawLayout({
 		prizeList,
-		chartType: 'NINE_LATTICE',
+		chartType: drawType,
 	})
 
 	return <div>{node}</div>

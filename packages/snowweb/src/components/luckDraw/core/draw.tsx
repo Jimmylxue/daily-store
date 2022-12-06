@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react'
 import { transformWinPrizeItem } from './transform'
 
-export default function useLuckDraw() {
+export function useLuckDraw() {
 	const progressIndex = [0, 1, 2, 5, 8, 7, 6, 3]
 	const [prizeIndex, setPrizeIndex] = useState<number>(0)
 	const [isDrawing, setIsDrawing] = useState<boolean>(false)
 
 	const draw = useCallback((prizeKey: number) => {
-		setIsDrawing(true)
 		const layoutKey = transformWinPrizeItem(prizeKey)
+		setIsDrawing(true)
 		let tickIndex = 0
 		const nextPrize = () => {
 			if (tickIndex >= progressIndex.length) {
@@ -42,7 +42,7 @@ export default function useLuckDraw() {
 			setTimeout(() => {
 				diffCheck()
 			}, 300)
-		}, 3000)
+		}, 4000)
 	}, [])
 
 	return {

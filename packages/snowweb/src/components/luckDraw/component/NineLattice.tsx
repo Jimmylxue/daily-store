@@ -2,7 +2,7 @@ import { memo } from 'react'
 import classnames from 'classnames'
 import { TShowList } from '../core/types'
 import './style.less'
-import useLuckDraw from '../core/draw'
+import { useLuckDraw } from '../core/draw'
 
 type TProps = {
 	prizeLayoutList: TShowList
@@ -17,8 +17,8 @@ export default memo(({ prizeLayoutList }: TProps) => {
 				<div
 					key={index}
 					style={{
-						width: 300,
-						height: 300,
+						width: 200,
+						height: 200,
 					}}
 					className={classnames(
 						'flex justify-center items-center border border-gray-400',
@@ -29,7 +29,7 @@ export default memo(({ prizeLayoutList }: TProps) => {
 					onClick={() => {
 						if (item.itemType === 'button') {
 							if (!isDrawing) {
-								draw(9)
+								draw(2)
 							} else {
 								console.log('正在抽奖中')
 							}

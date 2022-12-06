@@ -12,7 +12,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<LuckDraw prizeList={mockList} />
+			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" />
 			<UseImageDemo />
 			<UseEventListenerDOM />
 			<UseAsyncEffectDemo1 />
