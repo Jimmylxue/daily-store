@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import NineLattice from '../component/NineLattice'
 import { getNineLatticeInfo } from './layout'
-import { TOriginPrizeItem, TShowList } from './types'
+import { TOriginPrizeItem } from './types'
 
 type TDrawLayoutConfig = {
 	prizeList: TOriginPrizeItem[]
@@ -12,20 +12,20 @@ export default function useDrawLayout({
 	prizeList,
 	chartType,
 }: TDrawLayoutConfig) {
-	const [prizeLayoutList, setPrizeLayoutList] = useState<TShowList>([])
-	useEffect(() => {
+	const prizeLayoutList = useMemo(() => {
 		switch (chartType) {
 			case 'NINE_LATTICE':
-				setPrizeLayoutList(getNineLatticeInfo(prizeList)!)
+				return getNineLatticeInfo(prizeList)!
 		}
 	}, [chartType, prizeList])
 
-	const node =
-		chartType === 'NINE_LATTICE' ? (
+	const node = useMemo(() => {
+		return chartType === 'NINE_LATTICE' ? (
 			<NineLattice prizeLayoutList={prizeLayoutList} />
 		) : (
 			<></>
 		)
+	}, [chartType, prizeList])
 
 	return { node }
 }

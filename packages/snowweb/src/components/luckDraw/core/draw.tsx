@@ -3,7 +3,7 @@ import { transformWinPrizeItem } from './transform'
 
 export function useLuckDraw() {
 	const progressIndex = [0, 1, 2, 5, 8, 7, 6, 3]
-	const [prizeIndex, setPrizeIndex] = useState<number>(0)
+	const [prizeIndex, setPrizeIndex] = useState<number>(0) // 中奖高亮的key
 	const [isDrawing, setIsDrawing] = useState<boolean>(false)
 
 	const draw = useCallback((prizeKey: number) => {
@@ -25,7 +25,8 @@ export function useLuckDraw() {
 				}, 300)
 			} else {
 				setIsDrawing(false)
-				console.log('抽奖结束')
+				console.log('抽奖结束', tickIndex)
+				setPrizeIndex(progressIndex[tickIndex])
 			}
 		}
 		let interVal = setInterval(() => {

@@ -2,23 +2,21 @@ import { renderHook, act } from '@testing-library/react'
 import { useLuckDraw } from '../draw'
 
 describe('>>> useLuckDraw', () => {
+	jest.useFakeTimers()
+
 	it('test draw', () => {
 		const hook = renderHook(() => useLuckDraw())
 		expect(hook.result.current.isDrawing).toBeFalsy()
-		//
 		act(() => {
-			hook.result.current.draw(7)
+			// 抽中第一项
+			hook.result.current.draw(4)
 		})
+		expect(hook.result.current.prizeIndex).toBe(0)
 		expect(hook.result.current.isDrawing).toBeTruthy()
-		// hook.rerender()
-		// expect(hook.result.current.prizeIndex).toBe(0)
-		// hook.rerender()
-		// expect(hook.result.current.prizeIndex).toBe(1)
-
-		// setTimeout(() => {
-		// 	expect(hook.result.current.isDrawing).toBeFalsy()
-		// 	expect(hook.result.current.prizeIndex).toBe(6)
-		// 	done()
-		// }, 5000)
+		act(() => {
+			jest.advanceTimersByTime(10000)
+		})
+		expect(hook.result.current.isDrawing).toBeFalsy()
+		expect(hook.result.current.prizeIndex).toBe(3)
 	})
 })

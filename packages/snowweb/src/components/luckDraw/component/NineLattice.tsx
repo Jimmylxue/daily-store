@@ -29,7 +29,7 @@ export default memo(({ prizeLayoutList }: TProps) => {
 					onClick={() => {
 						if (item.itemType === 'button') {
 							if (!isDrawing) {
-								draw(2)
+								draw(5)
 							} else {
 								console.log('正在抽奖中')
 							}
