@@ -14,3 +14,8 @@ export type TPointStatus = 'EMPTY' | 'WHITE' | 'BLACK'
 export type TPointInfo = BasePxPosition & {
 	pointStatus: TPointStatus
 } & BaseLayoutPosition
+
+export type TGamePointInfo = {
+	oneDiffPointList: TPointInfo[]
+	twoDiffPointList: TPointInfo[][]
+}

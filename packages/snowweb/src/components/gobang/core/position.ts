@@ -20,13 +20,15 @@ export function getPositionByRowAndColumn(
 export function getPositionPxList(
 	layoutWidth: number,
 	size: number
-): [BasePxPosition[], BasePxPosition[][]] {
+): [TPointInfo[], TPointInfo[][]] {
 	const latticeSize = getLatticeSize(layoutWidth, size)
 	const positionPxList: TPointInfo[] = []
 	const twoDiffPositionPxList: TPointInfo[][] = []
 	for (let i = 0; i <= size; i++) {
+		// 行
 		const tempTwoDiffList = []
 		for (let j = 0; j <= size; j++) {
+			// 列
 			const tempPosition: TPointInfo = {
 				xPx: i * latticeSize,
 				yPx: j * latticeSize,
@@ -40,7 +42,10 @@ export function getPositionPxList(
 		}
 		twoDiffPositionPxList.push(tempTwoDiffList)
 	}
-	return [positionPxList, twoDiffPositionPxList]
+	const newTwoList = twoDiffPositionPxList[0].map((col, i) =>
+		twoDiffPositionPxList.map(row => row[i])
+	)
+	return [positionPxList, newTwoList]
 }
 
 export function filterShouldCheckPosition(

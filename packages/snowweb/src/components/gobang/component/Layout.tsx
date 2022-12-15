@@ -1,7 +1,8 @@
 export function Layout() {
-	const size = new Array(15).fill('')
+	const size = new Array(16).fill('')
+
 	return (
-		<>
+		<div id="app" className=" relative">
 			{/* row */}
 			{size.map((_, index) => (
 				<div
@@ -10,7 +11,7 @@ export function Layout() {
 					style={{
 						width: 750,
 						height: 1,
-						top: (750 / 14) * index,
+						top: (750 / 15) * index,
 					}}
 				></div>
 			))}
@@ -23,10 +24,10 @@ export function Layout() {
 					style={{
 						width: 1,
 						height: 750,
-						left: (750 / 14) * index,
+						left: (750 / 15) * index,
 					}}
 				></div>
 			))}
-		</>
+		</div>
 	)
 }
