@@ -2,7 +2,7 @@ export function Layout() {
 	const size = new Array(16).fill('')
 
 	return (
-		<div id="app" className=" relative">
+		<div id="app" className="relative">
 			{/* row */}
 			{size.map((_, index) => (
 				<div

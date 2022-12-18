@@ -8,6 +8,13 @@ export function Gobang() {
 			xPx: e.nativeEvent.offsetX,
 			yPx: e.nativeEvent.offsetY,
 		}
+		// @ts-ignore
+		if ([...e.target.classList].includes('absolute')) {
+			clickPosition.xPx = e.nativeEvent.x - 100
+			clickPosition.yPx = e.nativeEvent.y - 50
+		}
+		// if(e.currentTarget)
+
 		console.log({ x: clickPosition.xPx, y: clickPosition.yPx })
 		playChess(clickPosition)
 	}
@@ -20,6 +27,7 @@ export function Gobang() {
 				height: 750,
 				marginTop: 50,
 				marginLeft: 100,
+				zIndex: 100,
 			}}
 		>
 			<div className=" w-full h-full" onClick={clickFn}>
