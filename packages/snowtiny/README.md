@@ -50,7 +50,7 @@ yarn add snow-tiny
 
 ```json
 scripts: {
-  'compress': 'npx snow'
+  "compress": "npx snow”
 }
 ```
 

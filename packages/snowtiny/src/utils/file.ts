@@ -5,10 +5,10 @@ import {
 	mkdir,
 	readdir,
 } from 'fs'
+import { extname } from 'path'
 export function filterFile(fileList: string[], path: string) {
 	return fileList.filter(fileName => {
 		if (isDir(path + '/' + fileName)) {
-			// console.log('yes')
 		} else {
 		}
 		return (
@@ -20,11 +20,8 @@ export function filterFile(fileList: string[], path: string) {
 }
 
 export function isImage(fileName: string): boolean {
-	return (
-		fileName.endsWith('png') ||
-		fileName.endsWith('jpeg') ||
-		fileName.endsWith('jpg')
-	)
+	const ext = extname(fileName)
+	return ['.png', '.jpeg', '.jpg'].includes(ext)
 }
 
 export function isDir(pathName: string): boolean {

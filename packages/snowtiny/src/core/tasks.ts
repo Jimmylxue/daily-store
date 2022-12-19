@@ -1,3 +1,4 @@
+import { ChildProcess } from 'child_process'
 import Os from 'os'
 import { resolve } from 'path'
 import { TDetail, TFileItem } from '../types'
@@ -9,7 +10,11 @@ export function assignTask(taskList: TFileItem[]) {
 		exec: resolve(__dirname, './process.js'),
 	})
 
-	const works: any[] = []
+	const works: {
+		work: ChildProcess
+		tasks: TFileItem[]
+	}[] = []
+
 	if (taskList.length <= cpuNums) {
 		works.push({ work: cluster.fork(), tasks: taskList })
 	} else {
