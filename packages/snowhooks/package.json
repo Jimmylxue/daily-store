@@ -1,7 +1,7 @@
 {
 	"name": "@daily-store/snowhooks",
 	"version": "1.0.0",
-	"description": "@daily-store/hooks",
+	"description": "@daily-store/snowhooks",
 	"main": "index.ts",
 	"type": "module",
 	"scripts": {

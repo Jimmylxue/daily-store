@@ -10,7 +10,9 @@
 		"test:w": "jest --watch"
 	},
 	"dependencies": {
-		"@daily-store/snowhooks": "workspace:^1.0.0"
+		"@daily-store/snowhooks": "workspace:^1.0.0",
+		"@daily-store/snow-babel": "workspace:^1.0.0",
+		"react-router-dom": "^6.4.3"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-react": "^2.2.0",

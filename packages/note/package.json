@@ -1,5 +1,5 @@
 {
-	"name": "@daily-store/common",
+	"name": "@daily-store/note",
 	"version": "1.0.0",
 	"description": "@daily-store/utils",
 	"main": "index.ts",

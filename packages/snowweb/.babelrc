@@ -1,0 +1,5 @@
+{
+	"plugins":[["./SConsole.cjs",{
+			"env":"production"
+	}]]
+}
