@@ -15,6 +15,7 @@ function App() {
 	return (
 		<div className="App">
 			<Link to="/babel">babel</Link>
+			<Link to="/vite_plugin">vite_plugin</Link>
 			<Gobang />
 			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" />
 			<UseImageDemo />
