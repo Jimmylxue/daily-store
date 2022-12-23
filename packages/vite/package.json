@@ -1,0 +1,36 @@
+{
+	"name": "@daily-store/snow-vite-plugin",
+	"version": "1.0.0",
+	"description": "@daily-store/snow-vite-plugin",
+	"main": "dist/index.cjs.js",
+	"type": "module",
+	"scripts": {
+		"test:w": "jest --watch",
+		"build": "rimraf dist && run-s build-bundle",
+		"build-bundle": "esbuild src/markdown/index.ts --bundle --platform=node --target=node12 --external:@vue/compiler-sfc --external:vue/compiler-sfc --external:vite --outfile=dist/index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"peerDependencies": {
+		"vite": "^2.5.10"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.21",
+		"esbuild": "^0.14.27",
+		"vite": "^2.5.10"
+	},
+	"dependencies": {
+		"@types/qs": "^6.9.7",
+		"markdown-it": "^12.3.2",
+		"qs": "^6.10.3"
+	},
+	"browserslist": [
+		"defaults",
+		"not ie < 8",
+		"last 2 versions",
+		"> 1%",
+		"iOS 7",
+		"last 3 iOS versions"
+	]
+}
