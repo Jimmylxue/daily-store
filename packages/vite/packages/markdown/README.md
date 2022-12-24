@@ -8,7 +8,7 @@ react-markdown 是一个快速将 markdown 转为 html 的 vite 插件，支持�
 
 开发文档: [传送门](http://www.jimmyxuexue.top:999/snow-react-markdown/guide/introduce.html)
 
-GitHub: [传送门](https://github.com/Jimmylxue/easy-watermark)
+GitHub: [传送门](https://github.com/Jimmylxue/daily-store/tree/master/packages/vite/packages/markdown)
 
 > issues 是第一生产力！😄
 

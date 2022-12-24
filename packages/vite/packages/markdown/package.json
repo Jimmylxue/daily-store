@@ -1,8 +1,8 @@
 {
 	"name": "snow-react-markdown",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "snow-react-markdown",
-	"main": "dist/index.cjs.js",
+	"main": "index.js",
 	"type": "module",
 	"scripts": {
 		"test:w": "jest --watch",
