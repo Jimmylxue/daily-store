@@ -12,7 +12,5 @@
     "noUnusedLocals": true, // 不允许不使用已定义的变量
     "noUnusedParameters": true, // 不允许不使用的参数
     "baseUrl": "./" // 解析非相对模块名的基准目录
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  }
 }
