@@ -4,8 +4,8 @@ import App from './App'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './index.css'
 import BabelPage from './pages/babel'
-import Vite from './pages/vite'
-import '@daily-store/snow-vite-plugin/packages/markdown/dist/css/juejin.css'
+import Vite from './pages/vite/index'
+import 'snow-react-markdown/dist/css/juejin.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>

@@ -9,8 +9,11 @@
 		"build": "tsc",
 		"build-d": "rollup -c"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"markdown",
+		"react"
+	],
+	"author": "Jimmylxue",
 	"license": "ISC",
 	"peerDependencies": {
 		"vite": "^2.5.10"

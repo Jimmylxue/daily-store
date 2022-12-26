@@ -1,5 +1,3 @@
-## hello vite_plugin
+## hello snow-react-markdown
 
-- hello world~~~!!!~~~
-
-- [hello world](http://www.baidu.com)
+-
