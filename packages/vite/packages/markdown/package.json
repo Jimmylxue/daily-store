@@ -1,6 +1,6 @@
 {
 	"name": "snow-react-markdown",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "snow-react-markdown",
 	"main": "index.js",
 	"type": "module",
@@ -11,7 +11,9 @@
 	},
 	"keywords": [
 		"markdown",
-		"react"
+		"react",
+		"vite",
+		"plugin"
 	],
 	"author": "Jimmylxue",
 	"license": "ISC",

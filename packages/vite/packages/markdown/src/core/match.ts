@@ -1,7 +1,7 @@
 import { dirname, resolve } from 'path'
 import { readFileSync } from 'fs'
 import MarkdownIt from 'markdown-it'
-import { getFilePath } from './utils'
+import { getFilePath, parseCode } from './utils'
 
 export function isUnTransform(code: string, id: string) {
 	const tsx = /\.tsx$/
@@ -51,12 +51,17 @@ export function parseMarkDown(
 	return transformCode
 }
 
-const md = new MarkdownIt()
+const md = new MarkdownIt({
+	xhtmlOut: true,
+})
 export function transformMarkdown(mdText: string): string {
 	// 加上一个 class 名为 article-content 的 wrapper，方便我们等下添加样式
+	// console.log('dddd', md.render(mdText))
+	const transformBase = md.render(mdText)
+	const parse = parseCode(transformBase as string)
 	return `
-    <section className='article-content'>
-		${md.render(mdText)}
-    </section>
-  `
+	  <section className='article-content'>
+		${parse}
+	  </section>
+	`
 }
