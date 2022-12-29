@@ -35,14 +35,7 @@ export function parseMarkDown(
 		const mdText = readFileSync(mdFilePath, 'utf-8')
 		// 将 g-markdown 标签替换成转换后的 html 文本
 		transformCode = transformCode.replace(md, transformMarkdown(mdText))
-
 		mdRelationMap.set(mdFilePath, nowFilePath)
-
-		// transformCode = `
-		// 	import '@vitejs/react-markdown/style/vitejuejin.css'
-		//     ${transformCode}
-		//   `
-
 		transformCode = `
 		    ${transformCode}
 		  `
@@ -56,7 +49,6 @@ const md = new MarkdownIt({
 })
 export function transformMarkdown(mdText: string): string {
 	// 加上一个 class 名为 article-content 的 wrapper，方便我们等下添加样式
-	// console.log('dddd', md.render(mdText))
 	const transformBase = md.render(mdText)
 	const parse = parseCode(transformBase as string)
 	return `
