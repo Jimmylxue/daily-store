@@ -27,3 +27,11 @@
 ## library
 
 > 相关功能库集合
+
+## vite
+
+> vite 插件
+
+- markdown
+
+  react-markdown 是一个快速将 markdown 转为 html 的 vite 插件，支持自定义样式与一系列好看的默认样式！
