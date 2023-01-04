@@ -45,4 +45,14 @@ describe('>>> deepClone', () => {
 		expect(deepClone(object) === object).toBeFalsy()
 		expect(deepClone(object)).toEqual(object)
 	})
+
+	// it('deepClone', () => {
+	// 	const a: {
+	// 		key: string
+	// 		current: any
+	// 	} = { key: 'jimmy', current: undefined }
+	// 	a.current = a
+
+	// 	expect(deepClone(a)).toEqual(a)
+	// })
 })
