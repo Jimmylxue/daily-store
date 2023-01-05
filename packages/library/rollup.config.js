@@ -16,8 +16,8 @@ function baseConfig(isProd, type) {
 	return {
 		input: 'index.ts',
 		output: {
-			file: 'dist/js/main.umd.js', // 输出的文件(如果没有这个参数,则直接输出到控制台)
-			format: 'umd', // Rollup 输出的文件类型
+			file: `dist/js/main.${type}.js`, // 输出的文件(如果没有这个参数,则直接输出到控制台)
+			format: type, // Rollup 输出的文件类型
 			name: 'snow_animate',
 		},
 		// external,
@@ -53,7 +53,4 @@ function baseConfig(isProd, type) {
 	}
 }
 
-export default defineConfig([
-	baseConfig(true, 'cjs'),
-	// processConfig(true, 'cjs'),
-])
+export default defineConfig([baseConfig(true, 'cjs'), baseConfig(true, 'esm')])

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import UseImageDemo from '@daily-store/snowhooks/src/useImage/demo'
 import UseEventListenerDOM from '@daily-store/snowhooks/src/useEventListener/demo'
 import UseAsyncEffectDemo1 from '@daily-store/snowhooks/src/useAsyncEffect/demo/demo1'
@@ -8,9 +8,17 @@ import LuckDraw from './components/luckDraw'
 import { mockList } from './components/luckDraw/mock'
 import { Gobang } from './components/gobang'
 import { Link } from 'react-router-dom'
-
+// const snow_animate = require('./')
+import { sendMessage, listenStorage } from '@daily-store/library/dist/js'
 function App() {
 	const [count, setCount] = useState(0)
+
+	useEffect(() => {
+		listenStorage((e: any, payload: any) => {
+			console.log(e, payload)
+		})
+		// console.log(listenStorage)
+	}, [])
 
 	return (
 		<div className="App">
