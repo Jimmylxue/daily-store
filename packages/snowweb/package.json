@@ -15,7 +15,7 @@
 		"@daily-store/snowhooks": "workspace:^1.0.0",
 		"@daily-store/library": "workspace:^1.0.0",
 		"react-router-dom": "^6.4.3",
-		"snow-react-markdown": "^0.0.1"
+		"snow-react-markdown": "^0.0.2"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-react": "^2.2.0",

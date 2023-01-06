@@ -49,8 +49,8 @@ yarn add snow-tiny
 在`package.json` 中增加如下脚本：
 
 ```json
-scripts: {
-  "compress": "npx snow”
+"scripts": {
+  "compress": "npx snow"
 }
 ```
 

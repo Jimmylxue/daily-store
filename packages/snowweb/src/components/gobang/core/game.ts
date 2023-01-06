@@ -113,7 +113,7 @@ export function getCheckLeftDiagLine(
 ) {
 	const { _x, _y } = checkPoint
 	const checkDiagLine: TPointInfo[] = []
-	for (let i = _x + 1; i >= 0; i--) {
+	for (let i = _x - 1; i >= 0; i--) {
 		if (i > 15) {
 			continue
 		}
@@ -128,6 +128,10 @@ export function getCheckLeftDiagLine(
 			checkDiagLine.push(twoDiffPointList[i][_x + _y - i])
 		}
 	}
+	console.log({
+		checkPoint,
+		checkDiagLine,
+	})
 	return checkDiagLine
 }
 
@@ -144,7 +148,9 @@ export function whetherColSuccess(
 	twoDiffPointList: TPointInfo[][]
 ) {
 	const checkColLine = getCheckColLine(checkPoint, twoDiffPointList)
-
+	if (checkHasSuccessLine(checkPoint, checkColLine)) {
+		console.log(checkColLine)
+	}
 	return checkHasSuccessLine(checkPoint, checkColLine)
 }
 
@@ -161,6 +167,10 @@ export function whetherLeftDiagSuccess(
 	twoDiffPointList: TPointInfo[][]
 ) {
 	const checkLeftLine = getCheckLeftDiagLine(checkPoint, twoDiffPointList)
+	console.log('tt', twoDiffPointList)
+	if (checkHasSuccessLine(checkPoint, checkLeftLine)) {
+		console.log(checkLeftLine)
+	}
 	return checkHasSuccessLine(checkPoint, checkLeftLine)
 }
 
@@ -168,7 +178,7 @@ export function checkHasSuccessLine(
 	point: TPointInfo,
 	checkLine: TPointInfo[]
 ) {
-	if (checkLine.length < 4) {
+	if (checkLine.length <= 4) {
 		return false
 	}
 	let successCount = 1

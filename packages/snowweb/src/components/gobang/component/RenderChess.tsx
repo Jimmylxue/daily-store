@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import { useEffect } from 'react'
 import { TPointInfo } from '../core/type'
 
 type TProps = {
@@ -7,10 +6,6 @@ type TProps = {
 }
 
 export function RenderChess({ pointList }: TProps) {
-	useEffect(() => {
-		console.log(pointList)
-	}, [pointList])
-
 	return (
 		<div className=" absolute">
 			{pointList.map((rowList, rowIndex) => {

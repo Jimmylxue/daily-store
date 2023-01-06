@@ -9,6 +9,7 @@ export function useGame() {
 		twoDiffPointList: [],
 	})
 	const currentPlayer = useRef<'WHITE' | 'BLACK'>('BLACK')
+	const [winner, setWinner] = useState<'WHITE' | 'BLACK'>()
 
 	useEffect(() => {
 		const layout = getPositionPxList(750, 15)
@@ -42,16 +43,26 @@ export function useGame() {
 		[pointInfo]
 	)
 
+	const rePlay = () => {
+		const layout = getPositionPxList(750, 15)
+		setPointInfo({
+			oneDiffPointList: layout[0],
+			twoDiffPointList: layout[1],
+		})
+	}
+
 	useEffect(() => {
 		const checkWin = checkSuccess(pointInfo.twoDiffPointList)
 		if (checkWin) {
 			const winner = currentPlayer.current === 'WHITE' ? 'BLACK' : 'WHITE'
-			console.log(winner, '赢了')
+			setWinner(winner)
 		}
 	}, [pointInfo.twoDiffPointList])
 
 	return {
 		playChess: playChesses,
 		twoDiffPointList: pointInfo.twoDiffPointList,
+		rePlay,
+		winner,
 	}
 }
