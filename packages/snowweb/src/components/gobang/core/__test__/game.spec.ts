@@ -5,7 +5,6 @@ import {
 	getCheckRightDiagLine,
 	getCheckRowLine,
 	getLayoutPointByPosition,
-	playChess,
 	updateOneDiffLayout,
 	updateTwoDiffLayout,
 } from '../game'
