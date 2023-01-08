@@ -56,13 +56,6 @@ export function playChess(
 		throw new Error('改点不可下棋')
 	}
 	playPoint.pointStatus = player // 设置该点的选手颜色
-	// const newOneDiffPointList = updateOneDiffLayout(playPoint, oneDiffPointList)
-	// const newTwoDiffPointList = updateTwoDiffLayout(
-	// 	playPoint,
-	// 	twoDiffPositionList
-	// )
-	// console.log('new', newTwoDiffPointList)
-	// return [newOneDiffPointList, newTwoDiffPointList] as const
 	return [oneDiffPointList, twoDiffPositionList] as const
 }
 
@@ -122,9 +115,6 @@ export function getCheckLeftDiagLine(
 		checkDiagLine.push(item)
 		j++
 	}
-	if (checkPoint._x === 5 && checkPoint._y === 3) {
-		console.log(checkDiagLine)
-	}
 	return checkDiagLine
 }
 
@@ -160,7 +150,6 @@ export function whetherLeftDiagSuccess(
 	twoDiffPointList: TPointInfo[][]
 ) {
 	const checkLeftLine = getCheckLeftDiagLine(checkPoint, twoDiffPointList)
-	// console.log('tt', twoDiffPointList)
 	if (checkHasSuccessLine(checkPoint, checkLeftLine)) {
 		console.log(checkLeftLine, checkPoint)
 	}

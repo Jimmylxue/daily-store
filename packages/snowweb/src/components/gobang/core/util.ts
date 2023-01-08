@@ -1,5 +1,6 @@
 import { BasePxPosition } from './type'
 
+// 获取两个点之间的距离
 export function getTwoPointInstance(
 	point1: BasePxPosition,
 	point2: BasePxPosition

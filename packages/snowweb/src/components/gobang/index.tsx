@@ -14,7 +14,6 @@ export function Gobang() {
 			clickPosition.xPx = e.nativeEvent.x - 100
 			clickPosition.yPx = e.nativeEvent.y - 50
 		}
-		// if(e.currentTarget)
 
 		console.log({ x: clickPosition.xPx, y: clickPosition.yPx })
 		playChess(clickPosition)
@@ -28,6 +27,10 @@ export function Gobang() {
 
 	return (
 		<>
+			<h1>基于react 的五子棋游戏</h1>
+			<a href="https://github.com/Jimmylxue/daily-store/tree/master/packages/snowweb/src/components/gobang">
+				github 传送门
+			</a>
 			<div
 				className="relative"
 				style={{
