@@ -1,0 +1,31 @@
+:root {
+  --bg-primary: #3498db;
+  --text-primary: #34495e;
+
+  --bg-success: #2ecc71;
+  --text-success: white;
+}
+
+body{
+  width: 100vw;
+  height: 100vh;
+  background-color: #95a5a6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dz-btn{
+  width: 100px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.dz-btn:hover{
+  background: var(--bg-success);
+  color: var(--text-success);
+}
