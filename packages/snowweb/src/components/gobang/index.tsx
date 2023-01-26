@@ -27,10 +27,6 @@ export function Gobang() {
 
 	return (
 		<>
-			<h1>基于react 的五子棋游戏</h1>
-			<a href="https://github.com/Jimmylxue/daily-store/tree/master/packages/snowweb/src/components/gobang">
-				github 传送门
-			</a>
 			<div
 				className="relative"
 				style={{
@@ -47,6 +43,18 @@ export function Gobang() {
 				</div>
 			</div>
 			<button onClick={rePlay}>replay</button>
+			<hr />
+			<h1 className="mt-3">基于react 的五子棋游戏</h1>
+			<h3>
+				如果觉得不错 👍，给个{' '}
+				<a href="https://github.com/Jimmylxue/daily-store/tree/master/packages/snowweb/src/components/gobang">
+					star
+				</a>{' '}
+				⭐ 吧，你的认可是我最大的动力 ！
+			</h3>
+			<a href="https://github.com/Jimmylxue/daily-store/tree/master/packages/snowweb/src/components/gobang">
+				github 传送门
+			</a>
 		</>
 	)
 }
