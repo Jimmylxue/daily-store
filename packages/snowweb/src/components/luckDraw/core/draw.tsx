@@ -3,9 +3,9 @@ import { transformWinPrizeItem } from './transform'
 
 export function useLuckDraw() {
 	const progressIndex = [0, 1, 2, 5, 8, 7, 6, 3]
-	const [prizeIndex, setPrizeIndex] = useState<number>(0) // 中奖高亮的key
+	const [prizeIndex, setPrizeIndex] = useState<number>(3) // 中奖高亮的key
 	const [isDrawing, setIsDrawing] = useState<boolean>(false)
-	const speed = [50, 300] // 速度
+	const speed = [50, 300] // 速度 ms 单位
 	const speedLevel = useRef<number>(0) // 速度等级 => 对应的speed的下标
 
 	const changeSpeed = (
