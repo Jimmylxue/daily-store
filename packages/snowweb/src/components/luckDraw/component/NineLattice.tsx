@@ -29,7 +29,9 @@ export default memo(({ prizeLayoutList }: TProps) => {
 					onClick={() => {
 						if (item.itemType === 'button') {
 							if (!isDrawing) {
-								draw(5)
+								const index = Math.floor(Math.random() * 8) + 1
+								console.log(`即将抽中第${index}个奖品`)
+								draw(index)
 							} else {
 								console.log('正在抽奖中')
 							}
