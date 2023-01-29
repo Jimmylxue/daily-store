@@ -8,14 +8,14 @@ import BabelPage from './pages/babel'
 // import 'snow-react-markdown/dist/css/juejin.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-	<React.StrictMode>
-		<Router>
-			<Routes>
-				<Route path="/" element={<App />} />
-				<Route path="/babel" element={<BabelPage />} />
-				{/* <Route path="/vite_plugin" element={<Vite />} /> */}
-				<Route path="*" element={<App />}></Route>
-			</Routes>
-		</Router>
-	</React.StrictMode>
+	// <React.StrictMode>
+	<Router>
+		<Routes>
+			<Route path="/" element={<App />} />
+			<Route path="/babel" element={<BabelPage />} />
+			{/* <Route path="/vite_plugin" element={<Vite />} /> */}
+			<Route path="*" element={<App />}></Route>
+		</Routes>
+	</Router>
+	// </React.StrictMode>
 )
