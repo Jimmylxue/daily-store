@@ -8,6 +8,8 @@ import LuckDraw from './components/luckDraw'
 import { mockList } from './components/luckDraw/mock'
 import { Gobang } from './components/gobang'
 import SetStateDemo from './components/setStateDemo'
+import MemoDemo from './components/memoDemo'
+import MemoDemo2 from './components/memoDemo/demo2'
 // import { Link } from 'react-router-dom'
 // const snow_animate = require('./')
 // import { sendMessage, listenStorage } from '@daily-store/library/dist/js'
@@ -19,6 +21,8 @@ function App() {
 			{/* <Link to="/babel">babel</Link>
 			<Link to="/vite_plugin">vite_plugin</Link> */}
 			<SetStateDemo />
+			<MemoDemo />
+			<MemoDemo2 />
 			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" />
 			<Gobang />
 			{/* <UseImageDemo />
