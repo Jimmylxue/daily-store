@@ -1,5 +1,9 @@
 # 日常练手项目集合
 
+## note
+
+> 日常笔记
+
 ## snowhooks
 
 > 学习 ahooks 源码封装
