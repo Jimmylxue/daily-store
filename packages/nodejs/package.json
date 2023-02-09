@@ -11,5 +11,7 @@
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"devDependencies": {}
+	"devDependencies": {
+		"node-addon-api": "^5.0.0"
+	}
 }

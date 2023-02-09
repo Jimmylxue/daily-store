@@ -10,7 +10,6 @@
 		"test:w": "jest --watch"
 	},
 	"dependencies": {
-		"@daily-store/snow-babel": "workspace:^1.0.0",
 		"@daily-store/snow-vite-plugin": "workspace:^1.0.0",
 		"@daily-store/snowhooks": "workspace:^1.0.0",
 		"@daily-store/library": "workspace:^1.0.0",
