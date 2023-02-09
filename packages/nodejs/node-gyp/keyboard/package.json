@@ -1,0 +1,17 @@
+{
+	"name": "snow-keyboard",
+	"version": "1.0.0",
+	"description": "@daily-store/keyboard",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc",
+		"build-c++": "node-gyp rebuild"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"node-addon-api": "^5.0.0"
+	}
+}
