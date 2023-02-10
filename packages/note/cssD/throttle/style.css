@@ -1,0 +1,30 @@
+@keyframes throttle{
+  from {
+    pointer-events: none;
+  }
+
+  to {
+    pointer-events: all;
+  }
+}
+
+/*
+  animation-fill-mode: forwards  当动画完成时会保持在动画的最后一帧
+    再这个案例中 2s结束之后 动画的最后一帧是 pointer-events: all 就一直能够点击了（保证用户在过了时间之后肯定要能够正常点击）
+
+    按下的时候讲 animation 设置为null， 松开时animation 就恢复成那个 throttle， 这时候2秒内按钮是不可点击的，
+      根据这个机制，我们完成了按钮的节流处理
+*/
+
+.throttle{
+  animation: throttle 2s step-end forwards;
+  animation-name: throttle;
+  animation-duration: 2s;
+  animation-timing-function: step-end;
+  animation-fill-mode: forwards;
+}
+
+/* active 类似点击事件，点击时的一个状态 */
+div:active{
+  animation: none;
+}
