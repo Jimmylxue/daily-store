@@ -1,5 +1,19 @@
 import { memo } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default memo(() => {
-	return <div>babel</div>
+	const navigate = useNavigate()
+
+	return (
+		<div>
+			<h3>Babel</h3>
+			<div
+				onClick={() => {
+					navigate('/app')
+				}}
+			>
+				Back
+			</div>
+		</div>
+	)
 })

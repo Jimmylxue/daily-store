@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 // import { Gobang } from './components/gobang'
 // import SetStateDemo from './components/setStateDemo'
 import MemoDemo from './components/memoDemo'
+import RouterBug from './components/routerBug'
 // import MemoDemo2 from './components/memoDemo/demo2'
 // import { Link } from 'react-router-dom'
 // const snow_animate = require('./')
@@ -18,6 +19,7 @@ function App() {
 
 	return (
 		<div className="App">
+			<RouterBug />
 			{/* <Link to="/babel">babel</Link>
 			<Link to="/vite_plugin">vite_plugin</Link> */}
 			{/* <SetStateDemo /> */}
