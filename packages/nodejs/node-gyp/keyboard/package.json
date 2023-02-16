@@ -12,6 +12,7 @@
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"node-addon-api": "^5.0.0"
+		"node-addon-api": "^5.0.0",
+		"napi-thread-safe-callback": "^0.0.6"
 	}
 }
