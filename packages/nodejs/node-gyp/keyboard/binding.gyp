@@ -3,7 +3,7 @@
     ["OS=='win'", {
       "targets": [{
          "target_name": "snow-keyboard",
-         "sources": ["scan.cc"],
+         "sources": ["keyboard.cc"],
          'include_dirs': [
           "<!(node -p \"require('node-addon-api').include_dir\")",
           "<!@(node -p \"require('napi-thread-safe-callback').include\")"
