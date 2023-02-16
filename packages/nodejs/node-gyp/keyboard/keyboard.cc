@@ -24,23 +24,12 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
   {
     if (wParam == WM_KEYUP || wParam == WM_SYSKEYUP)
     {
-      // std::string key = checkKeyTable(p->vkCode);
-      std::string key = std::to_string(p->vkCode);
+      std::string key = std::to_string(p->vkCode); // 创建 key 是根据p做某种字符类型的转换
       cb->call([key](Napi::Env e, std::vector<napi_value> &args)
-               { args = {Napi::String::New(e, key)}; });
+               { args = {Napi::String::New(e, key)}; }); // 大致意思调用全局的 cb 函数
     }
   }
-
-  // if (nCode >= 0)
-  // {
-  //   if (wParam == WM_KEYUP || wParam == WM_SYSKEYUP)
-  //   {
-  //     std::string key = std::to_string(p->vkCode); // 创建 key 是根据p做某种字符类型的转换
-  //     cb->call([key](Napi::Env e, std::vector<napi_value> &args)
-  //              { args = {Napi::String::New(e, key)}; }); // 大致意思调用全局的 cb 函数
-  //   }
-  // }
-  // return CallNextHookEx(keyboardHook, nCode, wParam, lParam);
+  return CallNextHookEx(keyboardHook, nCode, wParam, lParam);
 }
 
 void setKeyboardHook()
