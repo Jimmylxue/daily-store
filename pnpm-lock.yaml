@@ -195,6 +195,8 @@ importers:
       classnames: ^2.3.2
       less: ^4.1.3
       markdown-it: ^12.3.2
+      mobx: ^6.8.0
+      mobx-react-lite: ^3.4.0
       postcss: ^8.4.19
       react-router-dom: ^6.4.3
       snow-react-markdown: ^0.0.2
@@ -205,6 +207,8 @@ importers:
       '@daily-store/snow-vite-plugin': link:../vite
       '@daily-store/snowhooks': link:../snowhooks
       antd: 5.2.2
+      mobx: 6.8.0
+      mobx-react-lite: 3.4.0_mobx@6.8.0
       react-router-dom: 6.4.3
       snow-react-markdown: registry.npmmirror.com/snow-react-markdown/0.0.2_vite@3.2.4
     devDependencies:
@@ -12777,6 +12781,26 @@ packages:
     dependencies:
       minimist: 1.2.7
     dev: true
+
+  /mobx-react-lite/3.4.0_mobx@6.8.0:
+    resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
+    peerDependencies:
+      mobx: ^6.1.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      mobx: 6.8.0
+    dev: false
+
+  /mobx/6.8.0:
+    resolution: {integrity: sha512-+o/DrHa4zykFMSKfS8Z+CPSEg5LW9tSNGTuN8o6MF1GKxlfkSHSeJn5UtgxvPkGgaouplnrLXCF+duAsmm6FHQ==}
+    dev: false
 
   /move-concurrently/1.0.1:
     resolution: {integrity: sha512-hdrFxZOycD/g6A6SoI2bB5NA/5NEqD0569+S47WZhPvm46sD50ZHdYaFmnua5lndde9rCHGjmfK7Z8BuCt/PcQ==}
