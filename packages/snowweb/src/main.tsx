@@ -8,6 +8,7 @@ import {
 	Link,
 	useNavigate,
 } from 'react-router-dom'
+import 'antd/dist/reset.css'
 import './index.css'
 import BabelPage from './pages/babel'
 // import Vite from './pages/vite/index'

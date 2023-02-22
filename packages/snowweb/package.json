@@ -10,9 +10,10 @@
 		"test:w": "jest --watch"
 	},
 	"dependencies": {
+		"@daily-store/library": "workspace:^1.0.0",
 		"@daily-store/snow-vite-plugin": "workspace:^1.0.0",
 		"@daily-store/snowhooks": "workspace:^1.0.0",
-		"@daily-store/library": "workspace:^1.0.0",
+		"antd": "^5.2.2",
 		"react-router-dom": "^6.4.3",
 		"snow-react-markdown": "^0.0.2"
 	},
