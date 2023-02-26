@@ -21,13 +21,13 @@ function App() {
 
 	return (
 		<div className="App">
-			<MoBxDemo />
-			<RouterBug />
+			{/* <MoBxDemo /> */}
+			{/* <RouterBug /> */}
 			{/* <Link to="/babel">babel</Link>
 			<Link to="/vite_plugin">vite_plugin</Link> */}
 			{/* <SetStateDemo /> */}
 			<DeepDemo />
-			<MemoDemo />
+			{/* <MemoDemo /> */}
 			{/* <MemoDemo2 />
 			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" />
 			<Gobang /> */}

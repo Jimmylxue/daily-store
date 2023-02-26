@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 class Box {
 	flag: undefined | boolean
-	childs: any[] = []
+	child: any[] = []
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -12,7 +12,7 @@ class Box {
 	}
 
 	addChild(child: any) {
-		this.childs.push(child)
+		this.child.push(child)
 	}
 }
 
