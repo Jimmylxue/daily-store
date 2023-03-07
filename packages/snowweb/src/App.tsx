@@ -12,6 +12,7 @@ import MemoDemo from './components/memoDemo'
 import RouterBug from './components/routerBug'
 import { MoBxDemo } from './components/mobx'
 import { DeepDemo } from './components/mobx/deep'
+import { Sweep } from './components/snowDesign'
 // import MemoDemo2 from './components/memoDemo/demo2'
 // import { Link } from 'react-router-dom'
 // const snow_animate = require('./')
@@ -27,6 +28,14 @@ function App() {
 			<Link to="/vite_plugin">vite_plugin</Link> */}
 			{/* <SetStateDemo /> */}
 			<DeepDemo />
+			<Sweep>
+				<div
+					className=" w-full bg-gray-200"
+					style={{
+						height: 300,
+					}}
+				></div>
+			</Sweep>
 			{/* <MemoDemo /> */}
 			{/* <MemoDemo2 />
 			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" />
