@@ -11,6 +11,8 @@ import {
 import 'antd/dist/reset.css'
 import './index.css'
 import BabelPage from './pages/babel'
+import { Button } from 'antd'
+import { SnowDesign } from './pages/snowDesign'
 // import Vite from './pages/vite/index'
 // import 'snow-react-markdown/dist/css/juejin.css'
 
@@ -24,13 +26,18 @@ const Main = () => {
 	}, [])
 
 	return (
-		<Routes>
-			<Route index element={<App />} />
-			<Route path="/app" element={<App />} />
-			<Route path="/babel" element={<BabelPage />} />
-			{/* <Route path="/vite_plugin" element={<Vite />} /> */}
-			{/* <Route path="*" element={<App />}></Route> */}
-		</Routes>
+		<div>
+			<Link to={'/snowDesign'}>snowDesign</Link>
+			<hr />
+			<Routes>
+				<Route index element={<App />} />
+				<Route path="/app" element={<App />} />
+				<Route path="/babel" element={<BabelPage />} />
+				<Route path="/snowDesign" element={<SnowDesign />} />
+				{/* <Route path="/vite_plugin" element={<Vite />} /> */}
+				{/* <Route path="*" element={<App />}></Route> */}
+			</Routes>
+		</div>
 	)
 }
 

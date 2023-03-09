@@ -1,0 +1,14 @@
+.skeleton-container{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+
+.skeleton-mask{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: gray;
+}
