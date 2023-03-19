@@ -13,6 +13,7 @@ import './index.css'
 import BabelPage from './pages/babel'
 import { Button } from 'antd'
 import { SnowDesign } from './pages/snowDesign'
+import { ForwardRefDemo } from './pages/forwardRef/forwardRef'
 // import Vite from './pages/vite/index'
 // import 'snow-react-markdown/dist/css/juejin.css'
 
@@ -28,12 +29,16 @@ const Main = () => {
 	return (
 		<div>
 			<Link to={'/snowDesign'}>snowDesign</Link>
+			<Link className="ml-3" to={'/forwardRef'}>
+				forwardRef
+			</Link>
 			<hr />
 			<Routes>
 				<Route index element={<App />} />
 				<Route path="/app" element={<App />} />
 				<Route path="/babel" element={<BabelPage />} />
 				<Route path="/snowDesign" element={<SnowDesign />} />
+				<Route path="/forwardRef" element={<ForwardRefDemo />} />
 				{/* <Route path="/vite_plugin" element={<Vite />} /> */}
 				{/* <Route path="*" element={<App />}></Route> */}
 			</Routes>
