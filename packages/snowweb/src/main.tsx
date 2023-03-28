@@ -14,6 +14,7 @@ import BabelPage from './pages/babel'
 import { Button } from 'antd'
 import { SnowDesign } from './pages/snowDesign'
 import { ForwardRefDemo } from './pages/forwardRef/forwardRef'
+import { Study } from './pages/study/study'
 // import Vite from './pages/vite/index'
 // import 'snow-react-markdown/dist/css/juejin.css'
 
@@ -32,6 +33,9 @@ const Main = () => {
 			<Link className="ml-3" to={'/forwardRef'}>
 				forwardRef
 			</Link>
+			<Link className="ml-3" to={'/study'}>
+				study
+			</Link>
 			<hr />
 			<Routes>
 				<Route index element={<App />} />
@@ -39,6 +43,7 @@ const Main = () => {
 				<Route path="/babel" element={<BabelPage />} />
 				<Route path="/snowDesign" element={<SnowDesign />} />
 				<Route path="/forwardRef" element={<ForwardRefDemo />} />
+				<Route path="/study" element={<Study />} />
 				{/* <Route path="/vite_plugin" element={<Vite />} /> */}
 				{/* <Route path="*" element={<App />}></Route> */}
 			</Routes>
