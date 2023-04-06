@@ -10,9 +10,9 @@ import UseImageDemo from '@daily-store/snowhooks/src/useImage/demo'
 // import SetStateDemo from './components/setStateDemo'
 import MemoDemo from './components/memoDemo'
 import RouterBug from './components/routerBug'
-import { MoBxDemo } from './components/mobx'
 import { DeepDemo } from './components/mobx/deep'
 import { Skeleton, Sweep } from './components/snowDesign'
+import { MoBxDemo } from './pages/mobx'
 // import MemoDemo2 from './components/memoDemo/demo2'
 // import { Link } from 'react-router-dom'
 // const snow_animate = require('./')
@@ -27,7 +27,8 @@ function App() {
 			{/* <Link to="/babel">babel</Link>
 			<Link to="/vite_plugin">vite_plugin</Link> */}
 			{/* <SetStateDemo /> */}
-			<DeepDemo />
+			<MoBxDemo />
+			{/* <DeepDemo /> */}
 			{/* <Sweep>
 				<div
 					className=" w-full bg-gray-200"
@@ -40,7 +41,7 @@ function App() {
 			{/* <MemoDemo2 />
 			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" />
 			<Gobang /> */}
-			<UseImageDemo />
+			{/* <UseImageDemo /> */}
 
 			{/* <UseEventListenerDOM />
 			<UseAsyncEffectDemo1 />
