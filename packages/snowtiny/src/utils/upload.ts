@@ -17,7 +17,7 @@ export function randomHeader() {
 		},
 		hostname: ['tinyjpg.com', 'tinypng.com'][randomNum(0, 1)], // 随机请求
 		method: 'POST',
-		path: '/web/shrink',
+		path: '/backend/opt/shrink', // 这个地址可能会变动 可以参考官网的地址  https://tinyjpg.com/ 查看最新的请求地址
 		rejectUnauthorized: false,
 	}
 }
