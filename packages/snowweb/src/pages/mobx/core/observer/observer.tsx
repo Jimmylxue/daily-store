@@ -7,6 +7,7 @@ export function Observer(fnComponent: FC): any {
 		const [_, setData] = useState(0)
 		useEffect(() => {
 			autoRun(() => {
+				console.log('run')
 				// @ts-ignore
 				ref.current = fnComponent()
 				setData(data => data + 1)

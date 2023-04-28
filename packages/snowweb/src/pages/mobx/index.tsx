@@ -11,6 +11,11 @@ const obj = reactive({
 	},
 })
 
+const obj2 = reactive({
+	ok: true,
+	text: 'hello world',
+})
+
 const Container: FC = () => {
 	return (
 		<div>
@@ -36,6 +41,28 @@ const Container: FC = () => {
 			>
 				changeStudy
 			</Button>
+			<hr />
+			<div>
+				{/* 
+					当 obj2.ok 为 false 的时候， 这时候应该清空掉 obj2.text 的副作用函数集合。
+						因为这种情况已经不需要关注 obj2.text 的变化了
+				*/}
+				{JSON.stringify(obj2)} {obj2.ok ? obj2.text : 'not change'}
+				<Button
+					onClick={() => {
+						obj2.ok = !obj2.ok
+					}}
+				>
+					change Status
+				</Button>
+				<Button
+					onClick={() => {
+						obj2.text = 'jimmy'
+					}}
+				>
+					change Text
+				</Button>
+			</div>
 		</div>
 	)
 }
