@@ -1,9 +1,15 @@
 type Dep = () => void
 
+type Options = {
+	scheduler?: (fn: () => void) => void
+	lazy?: boolean // 立刻执行一次，还是等待变化时再执行
+}
+
 // 函数类型 且拥有 deps 静态属性
 interface IDep {
 	(): void
 	deps: Set<Dep>
+	options: Options
 }
 
 type Target = { [key in string]: any }
@@ -19,7 +25,7 @@ type Target = { [key in string]: any }
  * 		如果 target 被 垃圾回收了 就完全没有必要再保留 target 所关联的所有信息了
  */
 
-const bucket = new WeakMap<Target, Map<string | symbol, Set<Dep>>>() // WeakMap 由 target 和 map 构成 , Map 由 key 与 Set 构成
+const bucket = new WeakMap<Target, Map<string | symbol, Set<IDep>>>() // WeakMap 由 target 和 map 构成 , Map 由 key 与 Set 构成
 
 let activeEffect: IDep | undefined // 用这个方式当effect 嵌套时会发生问题，因为这样等于同一时刻只会有一个effect 会出现嵌套内部的覆盖掉外部的
 
@@ -54,7 +60,7 @@ export function track(target: Target, key: string | symbol) {
 	}
 	let deps = depsMap.get(key)
 	if (!deps) {
-		depsMap.set(key, (deps = new Set<Dep>()))
+		depsMap.set(key, (deps = new Set<IDep>()))
 	}
 	deps.add(activeEffect)
 	activeEffect.deps.add(deps as any)
@@ -67,8 +73,26 @@ export function trigger(target: Target, key: string | symbol) {
 	}
 	const effects = depsMap.get(key)
 
-	const effectsToRun = new Set(effects)
-	effectsToRun.forEach(effectFn => effectFn?.())
+	const effectsToRun = new Set<IDep>()
+
+	/**
+	 * 如果trigger 触发执行的副作用函数与当前正在执行的副作用函数相同，则不触发执行
+	 */
+	effects &&
+		effects.forEach(effectFn => {
+			if (effectFn !== activeEffect) {
+				effectsToRun.add(effectFn)
+			}
+		})
+
+	effectsToRun.forEach(effectFn => {
+		if (effectFn.options.scheduler) {
+			// 如果存在调度器，则将函数传递至调度器中，让调度器执行
+			effectFn.options.scheduler?.(effectFn)
+		} else {
+			effectFn?.()
+		}
+	})
 }
 
 export function cleanup(effectFn: any) {
@@ -79,16 +103,22 @@ export function cleanup(effectFn: any) {
 	effectFn.deps.length = 0
 }
 
-export function autoRun(fn: () => void) {
+export function autoRun(fn: () => void, options: Options = {}) {
 	const effectFn: IDep = () => {
 		cleanup(effectFn) // 每次副作用函数执行之前，将其从关联的Set集合中删除
 		activeEffect = effectFn
 		effectStack.push(activeEffect) // 使用effectStack 是为了防止嵌套时发生问题
-		fn?.() //  fn 执行时 会重新触发和 收集新的 依赖关系
+		const res = fn?.() //  fn 执行时 会重新触发和 收集新的 依赖关系
 		effectStack.pop()
 		activeEffect = effectStack[effectStack.length - 1]
+		return res // 将fn 结果的返回值 返回
 	}
 	// effectFn.deps 用来村塾所有与该副作用函数相关联的依赖集合
 	effectFn.deps = new Set()
-	effectFn()
+	effectFn.options = options // 将一些选项调度器 挂在在 副作用函数上
+	if (!options.lazy) {
+		// 只有非 lazy 时才执行
+		effectFn()
+	}
+	return effectFn
 }

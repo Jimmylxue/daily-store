@@ -13,6 +13,7 @@ import RouterBug from './components/routerBug'
 import { DeepDemo } from './components/mobx/deep'
 import { Skeleton, Sweep } from './components/snowDesign'
 import { MoBxDemo } from './pages/mobx'
+import { ComputedDemo } from './pages/mobx/example/computedDemo'
 // import MemoDemo2 from './components/memoDemo/demo2'
 // import { Link } from 'react-router-dom'
 // const snow_animate = require('./')
@@ -27,7 +28,8 @@ function App() {
 			{/* <Link to="/babel">babel</Link>
 			<Link to="/vite_plugin">vite_plugin</Link> */}
 			{/* <SetStateDemo /> */}
-			<MoBxDemo />
+			{/* <MoBxDemo /> */}
+			<ComputedDemo />
 			{/* <DeepDemo /> */}
 			{/* <Sweep>
 				<div
