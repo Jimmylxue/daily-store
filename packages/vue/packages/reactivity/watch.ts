@@ -1,4 +1,4 @@
-import { autoRun } from '../reactive/reactive'
+import { autoRun } from './reactive'
 
 type Source = () => void | { [key: string]: any }
 

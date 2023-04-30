@@ -1,0 +1,12 @@
+{
+	"name": "@snow-vue/reactivity",
+	"version": "1.0.0",
+	"description": "@snow-vue/reactivity",
+	"scripts": {
+		"test": "jest"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {}
+}

@@ -1,8 +1,9 @@
 import { Button } from 'antd'
 import React, { FC } from 'react'
 import { Observer } from './core/observer/observer'
-import { reactive } from './core/reactive/reactive'
+import { reactive, shallowReactive } from './core/reactive/reactive'
 
+// const obj = shallowReactive({
 const obj = reactive({
 	name: 'jimmy',
 	age: 22,

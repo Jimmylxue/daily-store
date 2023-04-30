@@ -43,6 +43,7 @@ export function track(target: Target, key: string | symbol) {
 }
 
 export function trigger(target: Target, key: string | symbol, Desc?: string) {
+	console.log(Desc)
 	const depsMap = bucket.get(target)
 	if (!depsMap) {
 		return true

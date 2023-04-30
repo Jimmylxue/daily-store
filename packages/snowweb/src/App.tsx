@@ -28,8 +28,8 @@ function App() {
 			{/* <Link to="/babel">babel</Link>
 			<Link to="/vite_plugin">vite_plugin</Link> */}
 			{/* <SetStateDemo /> */}
-			{/* <MoBxDemo /> */}
-			<ComputedDemo />
+			<MoBxDemo />
+			{/* <ComputedDemo /> */}
 			{/* <DeepDemo /> */}
 			{/* <Sweep>
 				<div
