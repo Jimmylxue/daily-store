@@ -6,7 +6,10 @@
 
 type VNode = {
 	type: keyof HTMLElementDeprecatedTagNameMap
-	children: string | VNode
+	children: string | VNode[]
+	props?: {
+		[key in string]: any
+	}
 }
 type Container = {
 	_vnode: VNode
@@ -15,11 +18,17 @@ type Container = {
 type RenderOption = {
 	createElement: (type: keyof HTMLElementDeprecatedTagNameMap) => HTMLElement
 	setElementText: (el: HTMLElement, text: string) => void
-	insert: (el: HTMLElement, parent: HTMLElement, anchor: boolean) => void
+	insert: (el: HTMLElement, parent: HTMLElement, anchor?: boolean) => void
+	patchProps: (
+		el: HTMLElement,
+		key: string,
+		preValue: any,
+		nextValue: any
+	) => void
 }
 
 export function createRenderer(option: RenderOption) {
-	const { createElement, setElementText, insert } = option
+	const { createElement, setElementText, insert, patchProps } = option
 
 	function render(vnode: VNode, container: Container) {
 		/**
@@ -41,7 +50,7 @@ export function createRenderer(option: RenderOption) {
 		container._vnode = vnode
 	}
 
-	function patch(n1: VNode, n2: VNode, container: Container) {
+	function patch(n1: VNode | null, n2: VNode, container: Container) {
 		if (!n1) {
 			// 挂载过程
 			mountElement(n2, container)
@@ -53,7 +62,23 @@ export function createRenderer(option: RenderOption) {
 		if (typeof vnode.children === 'string') {
 			// 文本节点，设置内容即可
 			setElementText(el, vnode.children)
+		} else if (Array.isArray(vnode.children)) {
+			// children 是个数组 说明是vnode数组 则遍历调用patch
+			vnode.children.forEach(node => {
+				patch(null, node, el as Container)
+			})
 		}
+
+		if (vnode.props) {
+			const vnodeProps = vnode.props
+			for (const key in vnodeProps) {
+				if (Object.prototype.hasOwnProperty.call(vnodeProps, key)) {
+					const value = vnodeProps[key]
+					patchProps(el, key, null, value)
+				}
+			}
+		}
+
 		insert(el, container)
 	}
 
