@@ -3,6 +3,8 @@
  *  因为 vue 要实现跨平台，所以除了核心逻辑不变之外，一些更新渲染的API需要实现一层抽象。到时候其他平台逻辑带入
  */
 
+import { VHTMLElement } from '../runtime-core/renderer'
+
 function createElement(type: keyof HTMLElementDeprecatedTagNameMap) {
 	console.log('create element', type)
 	const element = document.createElement(type)
@@ -29,21 +31,48 @@ function shouldSetAsProps(el: HTMLElement, key: string, value: any) {
 }
 
 function patchProps(
-	el: HTMLElement,
+	el: VHTMLElement,
 	key: string,
 	preValue: any, // 前一次的 props
 	nextValue: any // 重新render后的 props
 ) {
-	/**
-	 * HTML Attribute 和 DOM Property 是不一样的
-	 * 	HTML Attribute 中的 class 在 DOM 中是 className
-	 *
-	 * 	<Input value="foo" /> 中 如果获取 el 就是 input 这个DOM对象
-	 * 		当input 输入了 jimmy 之后：
-	 * 		el.value : jimmy
-	 * 		el.getAttribute('value') : foo
-	 */
-	if (shouldSetAsProps(el, key, nextValue)) {
+	if (/on/.test(key)) {
+		// @ts-ignore
+		const invokers = el._vei || (el._vei = {})
+		let invoker = invokers[key]
+		// 事件的处理
+		const name = key.slice(2).toLowerCase()
+		// 绑定事件
+		el.addEventListener(name, nextValue)
+		if (nextValue) {
+			if (!invoker) {
+				invoker = el._vei[key] = (e: any) => {
+					if (Array.isArray(invoker.value)) {
+						invoker.value.forEach((fn: () => void) => fn?.())
+					} else {
+						invoker.value(e)
+					}
+				}
+				invoker.value = nextValue
+				el.addEventListener(name, invoker)
+			} else {
+				invoker.value = nextValue
+			}
+		} else if (invoker) {
+			el.removeEventListener(name, invoker)
+		}
+	} else if (key === 'class') {
+		/**
+		 * HTML Attribute 和 DOM Property 是不一样的
+		 * 	HTML Attribute 中的 class 在 DOM 中是 className
+		 *
+		 * 	<Input value="foo" /> 中 如果获取 el 就是 input 这个DOM对象
+		 * 		当input 输入了 jimmy 之后：
+		 * 		el.value : jimmy
+		 * 		el.getAttribute('value') : foo
+		 */
+		el.className = nextValue || ''
+	} else if (shouldSetAsProps(el, key, nextValue)) {
 		// @ts-ignore
 		const type = typeof el[key]
 		if (type === 'boolean' && nextValue === '') {
