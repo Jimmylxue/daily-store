@@ -6,7 +6,7 @@ import UseImageDemo from '@daily-store/snowhooks/src/useImage/demo'
 // import UseScrollDemo from '@daily-store/snowhooks/src/useScroll/demo'
 // import LuckDraw from './components/luckDraw'
 // import { mockList } from './components/luckDraw/mock'
-// import { Gobang } from './components/gobang'
+import { Gobang } from './components/gobang'
 // import SetStateDemo from './components/setStateDemo'
 import MemoDemo from './components/memoDemo'
 import RouterBug from './components/routerBug'
@@ -23,12 +23,12 @@ function App() {
 
 	return (
 		<div className="App">
-			{/* <MoBxDemo /> */}
+			<MoBxDemo />
 			{/* <RouterBug /> */}
 			{/* <Link to="/babel">babel</Link>
 			<Link to="/vite_plugin">vite_plugin</Link> */}
 			{/* <SetStateDemo /> */}
-			<MoBxDemo />
+			{/* <MoBxDemo /> */}
 			{/* <ComputedDemo /> */}
 			{/* <DeepDemo /> */}
 			{/* <Sweep>
@@ -41,8 +41,8 @@ function App() {
 			</Sweep> */}
 			{/* <MemoDemo /> */}
 			{/* <MemoDemo2 />
-			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" />
-			<Gobang /> */}
+			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" /> */}
+			{/* <Gobang /> */}
 			{/* <UseImageDemo /> */}
 
 			{/* <UseEventListenerDOM />

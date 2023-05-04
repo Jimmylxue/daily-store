@@ -22,6 +22,7 @@ export function Gobang() {
 	useEffect(() => {
 		if (winner) {
 			alert(`${winner}赢了`)
+			rePlay()
 		}
 	}, [winner])
 
