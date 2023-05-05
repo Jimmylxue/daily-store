@@ -42,7 +42,7 @@ function App() {
 			{/* <MemoDemo /> */}
 			{/* <MemoDemo2 />
 			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" /> */}
-			{/* <Gobang /> */}
+			<Gobang />
 			{/* <UseImageDemo /> */}
 
 			{/* <UseEventListenerDOM />

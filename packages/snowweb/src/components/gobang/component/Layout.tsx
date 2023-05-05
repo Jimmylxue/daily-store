@@ -6,12 +6,15 @@ export function Layout() {
 			{/* row */}
 			{size.map((_, index) => (
 				<div
-					className="row absolute bg-black"
+					className="row absolute bg-black pointer-events-none"
 					key={index}
 					style={{
 						width: 750,
 						height: 1,
 						top: (750 / 15) * index,
+					}}
+					onClick={() => {
+						console.log('点到点了 row')
 					}}
 				></div>
 			))}
@@ -19,12 +22,15 @@ export function Layout() {
 			{/* col */}
 			{size.map((_, index) => (
 				<div
-					className="col absolute bg-black"
+					className="col absolute bg-black pointer-events-none"
 					key={index}
 					style={{
 						width: 1,
 						height: 750,
 						left: (750 / 15) * index,
+					}}
+					onClick={() => {
+						console.log('点到点了 col')
 					}}
 				></div>
 			))}
