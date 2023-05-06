@@ -53,4 +53,8 @@ function baseConfig(isProd, type) {
 	}
 }
 
-export default defineConfig([baseConfig(true, 'cjs'), baseConfig(true, 'esm')])
+export default defineConfig([
+	baseConfig(true, 'cjs'),
+	baseConfig(true, 'esm'),
+	baseConfig(true, 'umd'),
+])

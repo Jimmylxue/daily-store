@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>选取颜色</title>
+		<style>
+			#app {
+				font-size: 8vw;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">snow-program 欢迎👏🏻</div>
+		<button id="btn">选取颜色</button>
+		<script src="../../../dist/js/main.umd.js"></script>
+		<script>
+			// console.log(textDance)
+			const { textBg, colorPicker } = window['snow_animate']
+			textBg(
+				{
+					imgSrc:
+						'https://www.dreamplan.cn/baidu-rmb-video-cover-1/d11101af738c4a3c0fa477d8334f1101.jpeg',
+					strokeSize: 2,
+					strokeColor: '#bfa',
+				},
+				document.getElementById('app')
+			)
+			const btn = document.getElementById('btn')
+			btn.addEventListener('click', async () => {
+				const color = await colorPicker()
+				console.log('color', color)
+			})
+			// textBg(document.getElementById('app'))
+		</script>
+	</body>
+</html>
