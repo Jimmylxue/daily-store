@@ -13,7 +13,7 @@ export function RenderChess({ pointList }: TProps) {
 					(point, pointIndex) =>
 						point.pointStatus !== 'EMPTY' && (
 							<div
-								className={classNames('rounded-full absolute', {
+								className={classNames('rounded-full absolute shadow-xl', {
 									'bg-black': !!(point.pointStatus === 'BLACK'),
 									' bg-slate-400': !!(point.pointStatus === 'WHITE'),
 								})}
@@ -23,6 +23,9 @@ export function RenderChess({ pointList }: TProps) {
 									height: 40,
 									left: point.xPx - 40 / 2,
 									top: point.yPx - 40 / 2,
+									boxShadow: `0px 0px 9px ${
+										point.pointStatus === 'BLACK' ? '#fff' : '#eee'
+									}`,
 								}}
 							></div>
 						)
