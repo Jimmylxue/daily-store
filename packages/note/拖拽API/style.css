@@ -1,0 +1,48 @@
+.container{
+  width: 60%;
+}
+
+.classBox{
+  width: 100%;
+  display: flex;
+}
+
+.classBox>div{
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3498db;
+  color: #fff;
+  margin: 0 10px;
+}
+
+.btbg{background:#e9faff !important;}
+
+
+.drag-hover{
+  background-color: rgba(0, 0, 0, .5) !important;
+}
+
+.tabtop {
+	margin-top: 13px;
+}
+.tabtop td{
+	background-color:#ffffff;
+	height:25px;
+	line-height:150%;
+	text-align:center
+}
+.font-center{ text-align:center}
+
+
+/* .titfont {
+	
+	font-family: 微软雅黑;
+	font-size: 16px;
+	font-weight: bold;
+	color: #255e95;
+	background: url(../images/ico3.gif) no-repeat 15px center;
+	background-color:#e9faff;
+} */

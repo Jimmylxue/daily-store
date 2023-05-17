@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>拖拽API</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="classBox">
+				<div data-effect="copy" draggable="true">语文</div>
+				<div data-effect="copy" draggable="true">数学</div>
+				<div data-effect="copy" draggable="true">英语</div>
+				<div data-effect="copy" draggable="true">美术</div>
+				<div data-effect="copy" draggable="true">编程</div>
+			</div>
+			<table
+				width="100%"
+				bgcolor="#cccccc"
+				class="tabtop"
+				align="center"
+				cellspacing="1"
+				cellpadding="4"
+				border="0"
+			>
+				<tr>
+					<th colspan="6" align="center">大学课程表</th>
+				</tr>
+
+				<tr>
+					<td class="btbg font-center titfont">时间\日期</td>
+					<td class="btbg font-center titfont">1</td>
+					<td class="btbg font-center titfont">2</td>
+					<td class="btbg font-center titfont">3</td>
+					<td class="btbg font-center titfont">4</td>
+					<td class="btbg font-center titfont">5</td>
+				</tr>
+				<tr>
+					<td class="btbg font-center titfont" rowspan="2">上午</td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+				</tr>
+				<tr>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+				</tr>
+				<tr>
+					<td colspan="6"></td>
+				</tr>
+				<tr>
+					<td class="btbg font-center titfont" rowspan="2">上午</td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+				</tr>
+				<tr>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+					<td data-drop="true" class="btbg font-center titfont"></td>
+				</tr>
+			</table>
+		</div>
+
+		<script src="./index.js"></script>
+	</body>
+</html>
