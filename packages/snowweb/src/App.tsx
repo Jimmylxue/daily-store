@@ -14,6 +14,7 @@ import { DeepDemo } from './components/mobx/deep'
 import { Skeleton, Sweep } from './components/snowDesign'
 import { MoBxDemo } from './pages/mobx'
 import { ComputedDemo } from './pages/mobx/example/computedDemo'
+import { TestDemo } from './components/&&'
 // import MemoDemo2 from './components/memoDemo/demo2'
 // import { Link } from 'react-router-dom'
 // const snow_animate = require('./')
@@ -23,7 +24,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<MoBxDemo />
+			<TestDemo />
+			{/* <MoBxDemo /> */}
 			{/* <RouterBug /> */}
 			{/* <Link to="/babel">babel</Link>
 			<Link to="/vite_plugin">vite_plugin</Link> */}
@@ -42,7 +44,7 @@ function App() {
 			{/* <MemoDemo /> */}
 			{/* <MemoDemo2 />
 			<LuckDraw prizeList={mockList} drawType="NINE_LATTICE" /> */}
-			<Gobang />
+			{/* <Gobang /> */}
 			{/* <UseImageDemo /> */}
 
 			{/* <UseEventListenerDOM />
