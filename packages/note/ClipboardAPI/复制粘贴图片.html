@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>复制粘贴图片</title>
+	</head>
+	<body>
+		<!-- contenteditable 就能让其类似于是一个 输入框 -->
+		<div class="edit" contenteditable></div>
+
+		<script>
+			const editor = document.querySelector('.edit')
+
+			// 粘贴事件
+			document.addEventListener('paste', e => {
+				if (e.target.file.length > 0) {
+					e.preventDefault()
+					// 说明有文件（图片）
+					const file = e.target.file[0]
+					// 创建文件读取器
+					const reader = new FileReader()
+					reader.readAsDataURL(file)
+					reader.onload(e => {
+						const base64 = e.target.result
+						const img = document.createElement('img')
+						img.src = base64
+						editor.appendChild(img)
+					})
+				}
+			})
+		</script>
+	</body>
+</html>

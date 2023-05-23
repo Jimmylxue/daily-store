@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>复制新增内容</title>
+	</head>
+	<body>
+		<input type="text" />
+		<button>复制</button>
+		<script>
+			const input = document.querySelector('input')
+			const btn = document.querySelector('button')
+
+			btn.addEventListener('click', () => {
+				const text = input.value
+				navigator.clipboard.writeText(text + ' hello world')
+			})
+		</script>
+	</body>
+</html>

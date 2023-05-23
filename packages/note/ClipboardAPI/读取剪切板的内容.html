@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>读取剪切板的内容</title>
+	</head>
+	<body>
+		<script>
+			/*
+        readText 是个 promise 网站会提示用户 要读取剪切板 看用户是否同意。 
+          同意之后 方可获取 剪切板的内容
+      */
+			navigator.clipboard.readText().then(text => {
+				document.querySelector('body').innerHTML = text
+			})
+		</script>
+	</body>
+</html>
