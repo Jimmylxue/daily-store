@@ -1,0 +1,10 @@
+.container{
+  /* 使用 css 变量时 使用 val 导入即可 */
+  color: var(--text-color);
+  background-color: var(--bg1);
+  
+}
+
+.title{
+  background-color: var(--bg2);
+}

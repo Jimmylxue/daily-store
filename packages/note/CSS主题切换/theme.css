@@ -1,0 +1,12 @@
+/* 使用 :root 创建css 运行时变量 */
+:root{
+  --text-color:#333;
+  --bg1:#c7ffdd;
+  --bg2:#fbd988;
+}
+
+html[data-theme='dark']{
+  --text-color:#fff;
+  --bg1:#102128;
+  --bg2:#2d5567;
+}
