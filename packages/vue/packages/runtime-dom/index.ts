@@ -47,6 +47,12 @@ function patchProps(
 		if (nextValue) {
 			if (!invoker) {
 				invoker = el._vei[key] = (e: any) => {
+					if (e.timeStamp < invoker.attached) {
+						// e.timeStamp 是事件执行的时间
+						// invoker.attached 事件处理函数绑定的时间
+						// 之所以这么设计是为了避免时间冒泡机制 屏蔽掉一些本不应该执行的事件
+						return
+					}
 					if (Array.isArray(invoker.value)) {
 						invoker.value.forEach((fn: () => void) => fn?.())
 					} else {
@@ -57,6 +63,7 @@ function patchProps(
 				el.addEventListener(name, invoker)
 			} else {
 				invoker.value = nextValue
+				invoker.attached = performance.now() // 绑定一下事件被绑定的时间  performance.now 是高精时间
 			}
 		} else if (invoker) {
 			el.removeEventListener(name, invoker)

@@ -120,6 +120,68 @@ export function createRenderer(option: RenderOption) {
 		 */
 	}
 
+	function patchElement(n1: VNode, n2: VNode) {
+		// 核心 更新元素的逻辑 -> 需要多看几遍
+		const el = (n2.el = n1.el)
+		const oldProps = n1.props
+		const newProps = n2.props
+
+		for (const key in newProps) {
+			if (newProps[key] !== oldProps?.[key]) {
+				// 新props 的 值 与 旧 props 值不相同
+				patchProps(el, key, oldProps?.[key], newProps[key])
+			}
+		}
+
+		for (const key in oldProps) {
+			if (!(key in newProps!)) {
+				// 新node 去掉了 某些 props
+				patchProps(el, key, oldProps[key], null)
+			}
+		}
+
+		patchChildren(n1, n2, el)
+	}
+
+	function patchChildren(n1: VNode, n2: VNode, container: VHTMLElement) {
+		// n1 旧节点 n2 新节点
+		// 判断新的子节点类型是否是文本节点
+		if (typeof n2.children === 'string') {
+			// 旧节点有三种可能性，分别是： 没有子节点、文本子节点、一组子节点。 需要分别处理
+			if (Array.isArray(n1.children)) {
+				// 一组子节点 分别执行卸载即可
+				n1.children.forEach(n => unmount(n))
+			}
+			// 其他情况 文本子节点、没有子节点  这两种情况直接设置最新的文本接口
+			setElementText(container, n2.children)
+		} else if (Array.isArray(n2.children)) {
+			// 新的子节点为一组子节点
+			if (Array.isArray(n1.children)) {
+				// 旧节点也是一组子节点
+				// 代码运行到这里就涉及了最最核心的部分 diff 算法了
+
+				// 性能差的解决方案：将旧的一个个卸载再重新挂在
+				n1.children.forEach(n => unmount(n))
+				// @ts-ignore
+				n2.children.forEach(n => patch(null, n, container))
+			} else {
+				// 要么是文本节点、要么没有子节点
+				setElementText(container, '') // 先清空一下
+				// @ts-ignore
+				n2.children.forEach(n => patch(null, n, container))
+			}
+		} else {
+			// 新节点不存在 需要将旧节点逐一卸载
+			if (Array.isArray(n1.children)) {
+				n1.children.forEach(n => unmount(n))
+			} else if (typeof n1.children === 'string') {
+				// 旧节点是文本节点 清空
+				setElementText(container, '')
+			}
+			// 如果旧节点也是空节点 则什么都不用做
+		}
+	}
+
 	function hydrate() {}
 
 	return {
