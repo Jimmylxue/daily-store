@@ -1,4 +1,7 @@
 import puppeteer from 'puppeteer'
+import { resolve } from 'path'
+const pwd = process.cwd()
+
 ;(async () => {
 	const cookies = [
 		{
@@ -262,9 +265,9 @@ import puppeteer from 'puppeteer'
 		}
 		return false
 	})
-	console.log('更新版本 按钮已出现')
+	console.log('🎉🎉🎉🎉🎉🎉🎉更新版本 按钮已出现🎉🎉🎉🎉🎉🎉🎉🎉')
 	// 截图
-	await page.screenshot({ path: 't1.png' })
+	await page.screenshot({ path: `${resolve(pwd, './progress/1.png')}` })
 	await page.evaluate(() => {
 		const buttons = document.querySelectorAll('span')
 		for (let button of buttons) {
@@ -275,10 +278,6 @@ import puppeteer from 'puppeteer'
 		}
 	})
 
-	// const elements = await page.$x('//span[contains(text(), "更新版本")]')
-	// console.log('elements', JSON.stringify(elements?.[0]))
-	// await elements[0].click()
-
 	await page.waitForFunction(() => {
 		const elements = document.querySelectorAll('input')
 		for (let i = 0; i < elements.length; i++) {
@@ -288,52 +287,65 @@ import puppeteer from 'puppeteer'
 		}
 		return false
 	})
-	console.log('input框已出现')
-	await page.screenshot({ path: 't2.png' })
-
+	console.log('🎉🎉🎉🎉🎉🎉🎉input框已出现🎉🎉🎉🎉🎉🎉🎉🎉')
 	const apkInput = (
 		await page.$x('//input[@type="file" and @accept=".apk"]')
 	)[0]
 	await apkInput.uploadFile('/Users/jimmy/Desktop/app/tastien.apk')
-	// })
 
-	setTimeout(async () => {
-		await page.screenshot({ path: 't3.png' })
-	}, 30000)
+	const watchUploadSuccess = page.waitForFunction(
+		() => {
+			const elements = document.querySelectorAll('span')
+			for (let i = 0; i < elements.length; i++) {
+				if (
+					elements[i].textContent.includes(
+						'因兼容包体相对较大，为保障设备运行及用户下载体验，建议您上传32位、64位双包'
+					)
+				) {
+					return true
+				}
+			}
+			return false
+		},
+		{ timeout: 1000 * 60 * 3 }
+	)
 
-	// await page.waitForFunction(
-	// 	() => {
-	// 		const elements = document.querySelectorAll('span')
-	// 		for (let i = 0; i < elements.length; i++) {
-	// 			if (elements[i].textContent.includes('重新上传')) {
-	// 				return true
-	// 			}
-	// 		}
-	// 		return false
-	// 	},
-	// 	{ timeout: 1000 * 60 * 3 }
-	// )
+	await watchUploadSuccess
 
-	console.log('已上传成功')
+	console.log('🎉🎉🎉🎉🎉🎉🎉apk已上传成功🎉🎉🎉🎉🎉🎉🎉')
 
-	await page.screenshot({ path: 't4.png' })
+	await page.screenshot({ path: `${resolve(pwd, './progress/2.png')}` })
 
 	await page.evaluate(() => {
 		const buttons = document.querySelectorAll('label')
 		for (let button of buttons) {
 			if (button.innerHTML.includes('审核通过后立即上线')) {
-				console.log('aaa')
 				button.click()
 				break
 			}
 		}
 	})
 
-	await page.pdf({
-		path: './pdf.pdf',
+	console.log('🎉🎉🎉🎉🎉🎉🎉上线时间已配置🎉🎉🎉🎉🎉🎉🎉')
+
+	await page.screenshot({ path: `${resolve(pwd, './progress/3.png')}` })
+
+	await page.evaluate(() => {
+		const buttons = document.querySelectorAll('.ant-btn-primary')
+		buttons?.[0]?.click()
 	})
 
-	await browser.close()
+	setTimeout(async () => {
+		await page.screenshot({ path: './progress/4.png' })
+		console.log('🎉🎉🎉🎉🎉🎉🎉小米应用市场app自动化上传成功🎉🎉🎉🎉🎉🎉🎉')
+		await browser.close()
+	}, 3000)
+
+	// await page.pdf({
+	// 	path: './pdf.pdf',
+	// })
+
+	// await browser.close()
 
 	// setTimeout(async () => {
 	// 	await page.screenshot({ path: 'ta.png' })
