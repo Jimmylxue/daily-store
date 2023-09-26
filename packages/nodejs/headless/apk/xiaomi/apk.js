@@ -1,237 +1,20 @@
 import puppeteer from 'puppeteer'
 import { resolve } from 'path'
+import { getFileContent } from '../core/file.js'
+import { spawn, spawnSync } from 'child_process'
 const pwd = process.cwd()
 
-;(async () => {
-	const cookies = [
-		{
-			name: 'developer_type',
-			value: '2',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 15,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'developer_id',
-			value: '1097326',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 19,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'ABtestWhiteUser',
-			value: '1',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 16,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'certification',
-			value:
-				'%E7%A6%8F%E5%BB%BA%E5%AE%A3%E6%83%B3%E5%B0%8F%E7%9B%92%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8',
-			domain: '.mi.com',
-			path: '/',
-			expires: -1,
-			size: 121,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'self_developer_type',
-			value: '2',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 20,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'mideveloper_ph',
-			value: 'NIt9fXYtVqo5k7V/5tYQbg==',
-			domain: '.dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 38,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'mideveloper_slh',
-			value: 'E17eET86rJkDz1ePtVPZe9fVJ0A=',
-			domain: '.dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 43,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'openPlatform',
-			value: '0',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 13,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'openGrayApp',
-			value: '0',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 12,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'route',
-			value: 'acb88a63456cbf3e3a64f7af5dce1ca6',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 37,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'userId',
-			value: '171969262',
-			domain: '.mi.com',
-			path: '/',
-			expires: -1,
-			size: 15,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'self_developer_id',
-			value: '1097326',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 24,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'uLocale',
-			value: 'zh_CN',
-			domain: '.mi.com',
-			path: '/',
-			expires: -1,
-			size: 12,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'pageType',
-			value: '1',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 9,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'JSESSIONID',
-			value: 'aaa-vxZd0bJnfgzZ1L2Qy',
-			domain: 'dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 31,
-			httpOnly: false,
-			secure: false,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-		{
-			name: 'serviceToken',
-			value:
-				'Xv5lATucFWfMVEEue0csFP8eWcF8GD8sVI0tnI7Zh81AhRlQ2Q3ziOPlKO99gREOGcnG7anUXBupxEa/Czcko/8FIAG5DNX1Ie87qgTvsQVOPrUOzJhJ9oi3NOJ68R3QYhoEBvrbcO3btvuO/RiVwxpOX2hI5ZZVkNZsX1FyWspUznA1HLFHs2EZBbgJQdzUodyh5wyyV/6HJzvMwGaJgZk8iwh07uJZIoWD/pF+H2LCfRFkOS20cbatG5Di9UILpQVdH2rVqvhJPWC9nm5nMTPhDr67XmFi7nMvclg2prwvOH/r1OB3nGPQ4kRK1/+vd9y8K90NewdeyBVOjgeNe7bQ/z7RTRTIgdwZMbV618A=',
-			domain: '.dev.mi.com',
-			path: '/',
-			expires: -1,
-			size: 376,
-			httpOnly: true,
-			secure: true,
-			session: true,
-			sameParty: false,
-			sourceScheme: 'Secure',
-			sourcePort: 443,
-		},
-	]
+let fileCookie
+let cookies
 
+const fileContent = await getFileContent('xiaomi')
+if (!fileContent) {
+	spawnSync('node', ['login.js'], {
+		stdio: 'inherit', // 将子进程的标准输出流重定向到父进程的标准输出流中
+	})
+}
+
+;(async () => {
 	// 启动chrome浏览器
 	const browser = await puppeteer.launch({
 		args: [
@@ -240,32 +23,70 @@ const pwd = process.cwd()
 		],
 	})
 	// 创建一个新页面
-	const page = await browser.newPage()
+	let page = await browser.newPage()
 
-	cookies.forEach(cookie => {
-		page.setCookie(cookie)
-	})
+	async function refreshCookie() {
+		console.log('🚩 主进程 刷新了 cookie')
+		fileCookie = await getFileContent('xiaomi')
+		cookies = JSON.parse(fileCookie)
+		cookies.forEach(cookie => {
+			page.setCookie(cookie)
+		})
+	}
+
+	await refreshCookie()
 
 	await page.setViewport({
 		width: 1920,
 		height: 1080,
 	})
-	// 页面指向指定网址
-	await page.goto(
-		'https://dev.mi.com/distribute/app/2882303761520226434?namespaceValue=0&userId=171969262&packageName=com.tastien.app'
-	)
 
-	// 点击“更新版本”div
-	await page.waitForFunction(() => {
-		const elements = document.querySelectorAll('span')
-		for (let i = 0; i < elements.length; i++) {
-			if (elements[i].textContent.includes('更新版本')) {
-				return true
+	async function start() {
+		// 页面指向指定网址
+		await page.goto(
+			'https://dev.mi.com/distribute/app/2882303761520226434?namespaceValue=0&userId=171969262&packageName=com.tastien.app'
+		)
+
+		await page.screenshot({ path: `${resolve(pwd, './progress/0.png')}` })
+
+		try {
+			// 点击“更新版本”div
+			await page.waitForFunction(
+				() => {
+					const elements = document.querySelectorAll('span')
+					for (let i = 0; i < elements.length; i++) {
+						if (elements[i].textContent.includes('更新版本')) {
+							return true
+						}
+					}
+					return false
+				},
+				{ timeout: 30000 }
+			)
+		} catch (error) {
+			console.log('💥 指定内容未出现 cookie 需重新刷新')
+			const childProcess = spawn('node', ['login.js'])
+			function newProcess() {
+				return new Promise((resolve, reject) => {
+					// 监听子进程的退出事件
+					childProcess.on('close', () => {
+						console.log(`🎉 子进程执行结束，正常退出 🎉`)
+						resolve(1)
+					})
+				})
 			}
+
+			await newProcess()
+
+			await refreshCookie()
+
+			await start()
 		}
-		return false
-	})
-	console.log('🎉🎉🎉🎉🎉🎉🎉更新版本 按钮已出现🎉🎉🎉🎉🎉🎉🎉🎉')
+	}
+
+	await start()
+
+	console.log('🌱 更新版本 按钮已出现 🌱')
 	// 截图
 	await page.screenshot({ path: `${resolve(pwd, './progress/1.png')}` })
 	await page.evaluate(() => {
@@ -287,7 +108,7 @@ const pwd = process.cwd()
 		}
 		return false
 	})
-	console.log('🎉🎉🎉🎉🎉🎉🎉input框已出现🎉🎉🎉🎉🎉🎉🎉🎉')
+	console.log('🌱 input框已出现 🌱')
 	const apkInput = (
 		await page.$x('//input[@type="file" and @accept=".apk"]')
 	)[0]
@@ -312,7 +133,7 @@ const pwd = process.cwd()
 
 	await watchUploadSuccess
 
-	console.log('🎉🎉🎉🎉🎉🎉🎉apk已上传成功🎉🎉🎉🎉🎉🎉🎉')
+	console.log('🚩 apk已上传成功 🚩')
 
 	await page.screenshot({ path: `${resolve(pwd, './progress/2.png')}` })
 
@@ -326,7 +147,7 @@ const pwd = process.cwd()
 		}
 	})
 
-	console.log('🎉🎉🎉🎉🎉🎉🎉上线时间已配置🎉🎉🎉🎉🎉🎉🎉')
+	console.log('🚩 上线时间已配置 🚩')
 
 	await page.screenshot({ path: `${resolve(pwd, './progress/3.png')}` })
 
@@ -337,74 +158,7 @@ const pwd = process.cwd()
 
 	setTimeout(async () => {
 		await page.screenshot({ path: './progress/4.png' })
-		console.log('🎉🎉🎉🎉🎉🎉🎉小米应用市场app自动化上传成功🎉🎉🎉🎉🎉🎉🎉')
+		console.log('🎉 小米应用市场app自动化上传成功 🎉')
 		await browser.close()
 	}, 3000)
-
-	// await page.pdf({
-	// 	path: './pdf.pdf',
-	// })
-
-	// await browser.close()
-
-	// setTimeout(async () => {
-	// 	await page.screenshot({ path: 'ta.png' })
-	// }, 2000)
-
-	// console.log(' 文件上传按钮已出现 ')
-	// await page.evaluate(async () => {
-	// 	const buttons = document.querySelectorAll('span')
-	// 	console.log('btns', buttons)
-	// 	for (let button of buttons) {
-	// 		if (button.innerText.includes('更新版本')) {
-	// 			console.log('ddddd')
-	// 			button.click()
-	// 			break
-	// 		}
-	// 	}
-
-	// 	// setTimeout(async () => {
-
-	// 	// }, 1000)
-	// })
-
-	// const  const apkInput = (
-	//   await page.$x('//input[@type="file" and @accept=".apk"]')
-	// )[0]
-
-	// setTimeout(async () => {
-	// 	await page.screenshot({ path: 't2.png' })
-	// 	// await page.evaluate(async () => {
-	// 	// const apkInput = document.querySelector('input[type=file][accept=".apk"]')
-	// 	await page.waitForSelector('input[type=file][accept=.apk]')
-	// const apkInput = (
-	// 	await page.$x('//input[@type="file" and @accept=".apk"]')
-	// )[0]
-	// 	console.log('apkInput', apkInput)
-	// 	await apkInput.uploadFile('/Users/jimmy/Desktop/app/tastien.apk')
-	// 	console.log('inputElement', apkInput)
-
-	// 	// 等待上传完成
-	// 	await page.waitForSelector('.apk_icon--4NK6b')
-	// 	await page.screenshot({ path: 't3.png' })
-	// 	// })
-
-	// 	await browser.close()
-	// }, 5000)
-
-	// await page.evaluate(() => {
-	// 	const buttons = document.querySelectorAll('span')
-	// 	for (let button of buttons) {
-	// 		if (button.innerText.includes('登 录')) {
-	// 			button.click()
-	// 			break
-	// 		}
-	// 	}
-	// })
-
-	// setTimeout(async () => {
-	// 	await page.screenshot({ path: 'p4.png' })
-	// 	// 关闭
-	// 	await browser.close()
-	// }, 2000)
 })()
