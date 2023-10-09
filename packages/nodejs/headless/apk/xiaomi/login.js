@@ -2,7 +2,9 @@ import puppeteer from 'puppeteer'
 import { writeFileContent } from '../core/file.js'
 export async function loginXiaoMi() {
 	// 启动chrome浏览器
-	const browser = await puppeteer.launch()
+	const browser = await puppeteer.launch({
+		headless: false,
+	})
 	// 创建一个新页面
 	const page = await browser.newPage()
 

@@ -17,6 +17,7 @@ if (!fileContent) {
 ;(async () => {
 	// 启动chrome浏览器
 	const browser = await puppeteer.launch({
+		headless: false,
 		args: [
 			'--disable-web-security',
 			'--disable-features=IsolateOrigins,site-per-process',
@@ -61,7 +62,7 @@ if (!fileContent) {
 					}
 					return false
 				},
-				{ timeout: 30000 }
+				{ timeout: 5000 }
 			)
 		} catch (error) {
 			console.log('💥 指定内容未出现 cookie 需重新刷新')
