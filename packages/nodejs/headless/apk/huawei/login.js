@@ -24,10 +24,10 @@ export async function loginHuaWei() {
 		return !!elements
 	})
 	// 截图
-	// await page.type('.userAccount', '19905076109')
-	// await page.type('.hwid-input-pwd', 'yshzx171107.')
-	await page.type('.userAccount', 'zouxinhua@tastien.com')
-	await page.type('.hwid-input-pwd', 'Zouxh123456')
+	await page.type('.userAccount', '19905076109')
+	await page.type('.hwid-input-pwd', 'yshzx171107.')
+	// await page.type('.userAccount', 'zouxinhua@tastien.com')
+	// await page.type('.hwid-input-pwd', 'Zouxh123456')
 
 	console.log('🎉🎉🎉🎉🎉🎉🎉账号密码已输入🎉🎉🎉🎉🎉🎉🎉🎉')
 
