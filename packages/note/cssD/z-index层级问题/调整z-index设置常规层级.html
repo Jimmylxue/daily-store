@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>常规理解</title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+			}
+			.a1 {
+				background-color: #2ecc71;
+				left: 0;
+				top: 0;
+				/* 通过设置 z-index 即可让 同层级 的元素 位于更高一层 */
+				z-index: 10;
+			}
+			.a2 {
+				background-color: #9b59b6;
+				left: 30px;
+				top: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="a1"></div>
+		<div class="a2"></div>
+	</body>
+</html>

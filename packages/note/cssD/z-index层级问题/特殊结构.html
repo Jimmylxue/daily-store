@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>特殊代码结构</title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+			}
+			.a1 {
+				background-color: #2ecc71;
+				left: 0;
+				top: 0;
+				z-index: 10;
+			}
+			.a2 {
+				background-color: #9b59b6;
+				left: 30px;
+				top: 30px;
+				/* z-index: 5; */
+			}
+			.a3 {
+				left: 30px;
+				top: 30px;
+				background-color: #e74c3c;
+				/*
+          这里即使 a3 的 z-index 比 a1 要高，但是它依旧是盖在a1下面的，
+            可以理解成 a3 的父元素 a2 都没有 a1 高 所以 它的 子元素也是没有办法比它高的
+        */
+				z-index: 100;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="a1"></div>
+		<div class="a2">
+			<div class="a3"></div>
+		</div>
+	</body>
+</html>
